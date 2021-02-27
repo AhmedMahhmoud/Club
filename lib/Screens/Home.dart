@@ -1,6 +1,12 @@
+import 'dart:ui';
+
+import 'package:demo_club/Models/UserModel.dart';
 import 'package:demo_club/Screens/NewsDetails.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:getwidget/components/avatar/gf_avatar.dart';
+import 'package:provider/provider.dart';
+import 'package:animations/animations.dart';
 import 'dart:math' as math;
 import 'MoreMenuScreen.dart';
 import 'MyHomePage.dart';
@@ -44,181 +50,247 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    var loggedUser = Provider.of<UserData>(context, listen: false).loggedIn;
     return selectedIndex == 1
-        ? Scaffold(
-            bottomNavigationBar: BottomAppBar(
-              shape: const CustomNotchedRectangle(),
-              child: Container(
-                  padding: EdgeInsets.only(top: 10, left: 10),
-                  height: 70.0.h,
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            child: InkWell(
-                                onTap: () {
-                                  toggleSelectedIndex(index);
-                                },
-                                child: BottomnavBar(
-                                  iconData: mylist[index].iconData,
-                                  text: mylist[index].text,
-                                  colorTex: selectedIndex == index
-                                      ? Colors.orange[700]
-                                      : Colors.red[700],
-                                  fontSize: selectedIndex == index
-                                      ? ScreenUtil()
-                                          .setSp(18, allowFontScalingSelf: true)
-                                      : ScreenUtil().setSp(15,
-                                          allowFontScalingSelf: true),
-                                )),
-                            margin: EdgeInsets.symmetric(horizontal: 40.w),
-                          );
-                        },
-                        itemCount: mylist.length,
-                      ),
-                    ],
-                  )),
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  selectedIndex = 1;
-                });
-              },
-              backgroundColor:
-                  selectedIndex == 1 ? Colors.orange[700] : Colors.red[800],
-              tooltip: 'Home',
-              child: Icon(Icons.home),
-            ),
-            backgroundColor: Colors.black,
-            body: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  Container(
-                    height: 350.h,
-                    child: ClipPath(
-                      clipper: ReviewMyClipper(),
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 340.h,
-                            color: Colors.white,
-                          ),
-                          Positioned(
-                              top: 10,
-                              right: 90.w,
-                              child: Column(
-                                children: [
-                                  Hero(
-                                    tag: "ahly",
-                                    child: Image(
-                                      image: NetworkImage(
-                                        "https://seeklogo.com/images/A/Al_Ahly_Club-logo-BA70BE3AE8-seeklogo.com.png",
-                                      ),
-                                      width: 200.w,
-                                      height: 200.h,
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    " اخبار النادي",
-                                    style: TextStyle(
-                                        color: Colors.yellow[800],
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              )),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.topRight,
+        ? GestureDetector(
+            onTap: () {
+              print(loggedUser);
+            },
+            child: Scaffold(
+              bottomNavigationBar: BottomAppBar(
+                shape: const CustomNotchedRectangle(),
+                child: Container(
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    height: 70.0.h,
                     width: MediaQuery.of(context).size.width,
-                    height: 40.h,
-                    child: Align(
-                        alignment: Alignment.centerRight,
-                        child: ListView.builder(
-                          reverse: true,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ListView.builder(
                           shrinkWrap: true,
-                          itemBuilder: (context, ind) {
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
                             return Container(
-                              margin: EdgeInsets.symmetric(horizontal: 3),
                               child: InkWell(
-                                onTap: () {
-                                  toggleSelectedCat(ind);
-                                },
-                                child: NewsHeaders(
-                                  headName: headerList[ind].headName,
-                                  colorHead: categoryIndex == ind
-                                      ? Colors.orange[700]
-                                      : Colors.red[900],
-                                  size: categoryIndex == ind ? 24 : 15,
-                                ),
-                              ),
+                                  onTap: () {
+                                    toggleSelectedIndex(index);
+                                  },
+                                  child: BottomnavBar(
+                                    iconData: mylist[index].iconData,
+                                    text: mylist[index].text,
+                                    colorTex: selectedIndex == index
+                                        ? Colors.orange[700]
+                                        : Colors.red[700],
+                                    fontSize: selectedIndex == index
+                                        ? ScreenUtil().setSp(18,
+                                            allowFontScalingSelf: true)
+                                        : ScreenUtil().setSp(15,
+                                            allowFontScalingSelf: true),
+                                  )),
+                              margin: EdgeInsets.symmetric(horizontal: 40.w),
                             );
                           },
-                          itemCount: headerList.length,
-                          scrollDirection: Axis.horizontal,
-                        )),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Container(
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return categoryIndex == 0
-                                ? InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => NewsScreen(
-                                              image: newslist[index].image,
-                                              title: newslist[index].newsTitle,
+                          itemCount: mylist.length,
+                        ),
+                      ],
+                    )),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  setState(() {
+                    selectedIndex = 1;
+                  });
+                },
+                backgroundColor:
+                    selectedIndex == 1 ? Colors.orange[700] : Colors.red[800],
+                tooltip: 'Home',
+                child: Icon(Icons.home),
+              ),
+              backgroundColor: Colors.black,
+              body: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    loggedUser
+                        ? Expanded(
+                            child: Container(
+                            padding: EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Notofications(),
+                                    UserHeader(),
+                                  ],
+                                ),
+                                SizedBox(height: 20.h),
+                                Expanded(
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      width: double.infinity,
+                                      child: Swiper(
+                                        autoplay: true,
+                                        autoplayDelay: 4000,
+                                        fade: 0.2,
+                                        itemCount: newslist.length,
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        NewsScreen(
+                                                      index: index,
+                                                      image:
+                                                          newslist[index].image,
+                                                      title: newslist[index]
+                                                          .newsTitle,
+                                                    ),
+                                                  ));
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft: Radius
+                                                                .circular(10),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    10)),
+                                                    child: Hero(
+                                                      tag: index,
+                                                      child: Image(
+                                                        width: double.infinity,
+                                                        height: 180,
+                                                        fit: BoxFit.cover,
+                                                        image: NetworkImage(
+                                                            newslist[index]
+                                                                .image),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 15),
+                                                    width: double.infinity,
+                                                    color: Colors.white
+                                                        .withOpacity(0.8),
+                                                    child: Text(
+                                                      newslist[index].newsTitle,
+                                                      style: TextStyle(
+                                                          color: Colors
+                                                              .orange[700],
+                                                          fontWeight:
+                                                              FontWeight.w800),
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 2,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                          ));
-                                    },
-                                    child: newslist[index])
-                                : InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => NewsScreen(
-                                              image: sportsNews[index].image,
-                                              title:
-                                                  sportsNews[index].newsTitle,
-                                            ),
-                                          ));
-                                    },
-                                    child: sportsNews[index]);
-                          },
-                          itemCount: categoryIndex == 0
-                              ? newslist.length
-                              : sportsNews.length,
+                                          );
+                                        },
+                                      )),
+                                )
+                              ],
+                            ),
+                          ))
+                        : Container(
+                            height: 350.h,
+                            child: ClipperWidget(
+                              title: " اخبار النادي",
+                            ),
+                          ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      alignment: Alignment.topRight,
+                      width: MediaQuery.of(context).size.width - 10.w,
+                      height: 40.h,
+                      child: Align(
+                          alignment: Alignment.centerRight,
+                          child: ListView.builder(
+                            reverse: true,
+                            shrinkWrap: true,
+                            itemBuilder: (context, ind) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    toggleSelectedCat(ind);
+                                  },
+                                  child: NewsHeaders(
+                                    headName: headerList[ind].headName,
+                                    colorHead: categoryIndex == ind
+                                        ? Colors.orange[700]
+                                        : Colors.red[900],
+                                    size: categoryIndex == ind ? 24 : 15,
+                                  ),
+                                ),
+                              );
+                            },
+                            itemCount: headerList.length,
+                            scrollDirection: Axis.horizontal,
+                          )),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Container(
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              return categoryIndex == 0
+                                  ? AnimatedPage(
+                                      card: newslist[index],
+                                      secondScreen: NewsScreen(
+                                        index: index,
+                                        image: newslist[index].image,
+                                        title: newslist[index].newsTitle,
+                                      ),
+                                    )
+                                  : InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => NewsScreen(
+                                                index: index,
+                                                image: sportsNews[index].image,
+                                                title:
+                                                    sportsNews[index].newsTitle,
+                                              ),
+                                            ));
+                                      },
+                                      child: sportsNews[index]);
+                            },
+                            itemCount: categoryIndex == 0
+                                ? newslist.length
+                                : sportsNews.length,
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
           )
@@ -276,17 +348,34 @@ class _HomeState extends State<Home> {
                   child: Icon(Icons.home),
                 ),
                 backgroundColor: Colors.black,
-                body: RoundedAlert(
-                  onPressed: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) => MyHomePage(),
+                body: loggedUser
+                    ? Container(
+                        padding: EdgeInsets.all(15),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Notofications(),
+                                UserHeader(),
+                              ],
+                            ),
+                          ],
                         ),
-                        (route) => false);
-                  },
-                  title: "برجاء تسجيل الدخول",
-                  content: "تحتاج الي تسجيل الدخول لعرض الميزات المتكاملة",
-                ),
+                      )
+                    : RoundedAlert(
+                        onPressed: () {
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                builder: (context) => MyHomePage(),
+                              ),
+                              (route) => false);
+                        },
+                        buttonName: "تسجيل الدخول",
+                        title: "برجاء تسجيل الدخول",
+                        content:
+                            "تحتاج الي تسجيل الدخول لعرض الميزات المتكاملة",
+                      ),
               )
             : Scaffold(
                 bottomNavigationBar: BottomAppBar(
@@ -342,6 +431,132 @@ class _HomeState extends State<Home> {
                 ),
                 backgroundColor: Colors.black,
                 body: MoreMenuScreen());
+  }
+}
+
+class Notofications extends StatelessWidget {
+  const Notofications({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Hero(
+          tag: "ahly",
+          child: Image(
+            width: 30.w,
+            height: 35.h,
+            fit: BoxFit.fitHeight,
+            image: NetworkImage(
+                "https://seeklogo.com/images/A/Al_Ahly_Club-logo-BA70BE3AE8-seeklogo.com.png"),
+          ),
+        ),
+        Positioned(
+          right: 0,
+          top: 0,
+          child: Container(
+              padding: EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.red[800],
+              ),
+              child: Text(
+                "1",
+                style: TextStyle(color: Colors.white, fontSize: 11),
+              )),
+        )
+      ],
+    );
+  }
+}
+
+class UserHeader extends StatelessWidget {
+  const UserHeader({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(
+          "احمد محمود عبد الحميد",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800),
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        Container(
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                width: 1,
+                color: Colors.white,
+              )),
+          child: GFAvatar(
+            backgroundColor: Colors.white,
+            radius: 30,
+            backgroundImage: NetworkImage(
+                "https://scontent.fcai21-2.fna.fbcdn.net/v/t1.0-9/79803978_2206482966119329_7485546926507556864_n.jpg?_nc_cat=108&ccb=3&_nc_sid=174925&_nc_eui2=AeHHQqdJBe1wPzn5bN-SOqIRtDQyKomkcn20NDIqiaRyfe1QwPHwKm5pkbWX0A0KvHxDNuCahayPeOmbX7gWDbNG&_nc_ohc=-7xnIwcJ6JcAX8sKi4C&_nc_ht=scontent.fcai21-2.fna&oh=05115c7a72aa71660088d476e3121e95&oe=605DC125"),
+          ),
+        ),
+      ],
+    ));
+  }
+}
+
+class ClipperWidget extends StatelessWidget {
+  final String title;
+  const ClipperWidget({
+    this.title,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipPath(
+      clipper: ReviewMyClipper(),
+      child: Stack(
+        children: [
+          Container(
+            height: 340.h,
+            color: Colors.white,
+          ),
+          Positioned(
+              top: 10,
+              right: 90.w,
+              child: Column(
+                children: [
+                  Hero(
+                    tag: "ahly",
+                    child: Image(
+                      image: NetworkImage(
+                        "https://seeklogo.com/images/A/Al_Ahly_Club-logo-BA70BE3AE8-seeklogo.com.png",
+                      ),
+                      width: 200.w,
+                      height: 200.h,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    title,
+                    style: TextStyle(
+                        color: Colors.yellow[800],
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              )),
+        ],
+      ),
+    );
   }
 }
 
@@ -534,5 +749,30 @@ class CustomNotchedRectangle extends NotchedShape {
       ..lineTo(host.right, host.bottom)
       ..lineTo(host.left, host.bottom)
       ..close();
+  }
+}
+
+class AnimatedPage extends StatelessWidget {
+  final Widget card;
+  final Widget secondScreen;
+  AnimatedPage({
+    this.secondScreen,
+    this.card,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OpenContainer(
+      transitionDuration: Duration(milliseconds: 500),
+      closedBuilder: (context, action) {
+        return card;
+      },
+      closedColor: Colors.transparent,
+      openColor: Colors.transparent,
+      openBuilder: (context, action) {
+        return secondScreen;
+      },
+    );
   }
 }

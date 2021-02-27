@@ -6,8 +6,9 @@ class RoundedAlert extends StatelessWidget {
   final String title;
   final String content;
   final Function onPressed;
-
-  RoundedAlert({this.title, this.content, @required this.onPressed});
+  final String buttonName;
+  RoundedAlert(
+      {this.title, this.content, @required this.onPressed, this.buttonName});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class RoundedAlert extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(15),
                       child: Text(
-                        "تسجيل الدخول",
+                        buttonName,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 17,

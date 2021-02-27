@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:demo_club/Models/UserModel.dart';
+import 'package:demo_club/Widgets/AlertDialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:circle_wheel_scroll/circle_wheel_scroll_view.dart';
@@ -109,12 +110,8 @@ class MyHomePage extends StatelessWidget {
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return "برجاء ادخال رقم العضوية";
-                                  } else {
-                                    print(txtController.text);
-                                    Provider.of<UserData>(context,
-                                            listen: false)
-                                        .login(txtController.text);
                                   }
+                                  return null;
                                 },
                                 decoration: InputDecoration(
                                     contentPadding: EdgeInsets.only(
@@ -138,7 +135,11 @@ class MyHomePage extends StatelessWidget {
                                   onPressed: () {
                                     if (!_formKey.currentState.validate()) {
                                       return;
-                                    } else {}
+                                    } else {
+                                      Provider.of<UserData>(context,
+                                              listen: false)
+                                          .login(txtController.text, context);
+                                    }
                                   },
                                   text: "التسجيل",
                                   size: GFSize.LARGE,

@@ -2,11 +2,15 @@ import 'package:demo_club/Widgets/backButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getwidget/components/button/gf_button.dart';
+import 'package:getwidget/shape/gf_button_shape.dart';
+import 'package:getwidget/size/gf_size.dart';
 
 class NewsScreen extends StatelessWidget {
   final String image;
   final String title;
-  NewsScreen({this.image, this.title});
+  final int index;
+  NewsScreen({this.image, this.title, this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +59,13 @@ class NewsScreen extends StatelessWidget {
                       height: 250.h,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: Image(
-                          fit: BoxFit.fitWidth,
-                          image: NetworkImage(
-                            image,
+                        child: Hero(
+                          tag: index,
+                          child: Image(
+                            fit: BoxFit.fitWidth,
+                            image: NetworkImage(
+                              image,
+                            ),
                           ),
                         ),
                       ),
@@ -66,8 +73,8 @@ class NewsScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.w, vertical: 10.h),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -98,7 +105,7 @@ class NewsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               )),

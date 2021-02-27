@@ -24,10 +24,9 @@ List<NewsCard> newslist = [
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA9hO5TrF6XigqSKtM92Kramw6u4Do3ySM5A&usqp=CAU",
   ),
   NewsCard(
-    newsTitle:
-        " رحلة يوم واحد لسيدات النادي الأهلي الي الأسكندرية في شهر فبراير",
+    newsTitle: " موسيماني يوضح.. لماذا دفع بـثلاثي في وسط الملعب أمام سيمبا؟",
     image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA9hO5TrF6XigqSKtM92Kramw6u4Do3ySM5A&usqp=CAU",
+        "https://media.gemini.media/img/yallakora/Normal//2021/2/8/etutxhdxmaehfxa2021_2_8_20_50.jpg",
   ),
   NewsCard(
     newsTitle:

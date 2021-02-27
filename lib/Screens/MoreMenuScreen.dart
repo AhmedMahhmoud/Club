@@ -1,11 +1,15 @@
+import 'package:demo_club/Models/UserModel.dart';
+import 'package:demo_club/Screens/MyHomePage.dart';
 import 'package:demo_club/Screens/SportsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class MoreMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var loggedUser = Provider.of<UserData>(context, listen: false).loggedIn;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -87,8 +91,19 @@ class MoreMenuScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
                 MoreRowItem(
-                  title: "تسجيل الدخول",
-                  iconData: FontAwesomeIcons.doorOpen,
+                  function: () {
+                    loggedUser
+                        ? Provider.of<UserData>(context, listen: false)
+                            .logout(context)
+                        : Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyHomePage()));
+                  },
+                  title: loggedUser ? "تسجيل الخروج" : "تسجيل الدخول",
+                  iconData: loggedUser
+                      ? FontAwesomeIcons.doorOpen
+                      : FontAwesomeIcons.doorClosed,
                 ),
                 Divider(
                   color: Colors.white,

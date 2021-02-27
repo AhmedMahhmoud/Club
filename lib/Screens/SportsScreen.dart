@@ -3,7 +3,7 @@ import 'package:demo_club/Widgets/NewsTilesList.dart';
 import 'package:demo_club/Widgets/backButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SportsScreen extends StatefulWidget {
   @override
   _SportsScreenState createState() => _SportsScreenState();
@@ -30,8 +30,8 @@ class _SportsScreenState extends State<SportsScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image(
-                          width: 40,
-                          height: 45,
+                          width: 40.w,
+                          height: 45.h,
                           fit: BoxFit.fitHeight,
                           image: NetworkImage(
                               "https://seeklogo.com/images/A/Al_Ahly_Club-logo-BA70BE3AE8-seeklogo.com.png"),
@@ -101,7 +101,7 @@ class SportsActivitiesCard extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 150,
+            height: 150.h,
             child: Hero(
               tag: index,
               child: Image(
@@ -122,7 +122,7 @@ class SportsActivitiesCard extends StatelessWidget {
         ],
       ),
       width: double.infinity,
-      height: 200,
+      height: 200.h,
     );
   }
 }
