@@ -1,9 +1,15 @@
+import 'package:demo_club/Models/FoodCategory.dart';
+import 'package:demo_club/Screens/Restaurant.dart';
+import 'package:demo_club/Screens/RestaurantAfterQr.dart';
 import 'package:demo_club/Screens/SportsActivitiesDetails.dart';
 import 'package:demo_club/Screens/SportsScreen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Screens/Home.dart';
+import 'RestaurantBottomSheet.dart';
 
 List<NewsCard> newslist = [
   NewsCard(
@@ -119,4 +125,81 @@ List<String> imagesGallery = [
   "https://www.getafeinternational.com/images/the-academy-training.jpg",
   "https://static.wixstatic.com/media/ec0b94_8bbfad41dac24649b5b5a4b5334507a7~mv2.jpg/v1/fill/w_560,h_386,al_c,q_80,usm_0.66_1.00_0.01/IMG_9882_edited.webp",
   "https://soccerinteraction.com/wp-content/uploads/2018/02/ClinicWilliam3_SoccerAcademy.jpg"
+];
+///////////
+List<GridViewItemsWidg> gridList = [
+  GridViewItemsWidg(
+    iconData: "android/app/resources/sport.json",
+    title: "الأشتراكات الرياضية",
+    function: SportsScreen(),
+  ),
+  GridViewItemsWidg(
+    iconData: "android/app/resources/payment.json",
+    title: "تجديد الأشتراك",
+  ),
+  GridViewItemsWidg(
+    iconData: "android/app/resources/qr.json",
+    title: "تصريح دخول النادى",
+  ),
+  GridViewItemsWidg(
+    iconData: "android/app/resources/food.json",
+    title: "المطاعم",
+    function: RestaurantScreen(),
+  ),
+  GridViewItemsWidg(
+    iconData: "android/app/resources/travel.json",
+    title: "الرحلات",
+  ),
+];
+///////////////////
+List<FoodItemMenuWidg> mealsList = [
+  FoodItemMenuWidg(
+    price: 120,
+    image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBjiu4IV7mviAAbMdASwTVY_wbCQWWkH207Q&usqp=CAU",
+    title: "Grand Share box",
+    description:
+        "Pick 2 sandwiches from the juicy Big Tasty® (Beef/Chicken) and delicious Grand Chicken (Premier, Spicy) + 2 sandwiches from Beefburger, Cheeseburger and Chicken MACDO + 2 regular Fries + 1.25 liter Coke.",
+  ),
+  FoodItemMenuWidg(
+    price: 130,
+    image:
+        "https://www.mcdonalds.eg/Cms_Data/Contents/En/Media/images/Menu/large-Image/Share-Box.png",
+    title: "Share box",
+    description:
+        "Share and enjoy our iconic items at a great price! Pick 2 sandwiches from Big Mac® (Beef/Chicken) and McChicken® + 2 sandwiches from Beef Burger, Cheeseburger and Chicken MacDo® + 2 regular Fries + 1.25 liter Coke.",
+  ),
+  FoodItemMenuWidg(
+    price: 140,
+    image:
+        "https://www.mcdonalds.eg/Cms_Data/Contents/En/Media/images/Menu/large-Image/M2M-700x474.png",
+    title: "Mix 2 Meal",
+    description:
+        "Pick two! Choose among the tasty Cheeseburger, the delicious Chicken MACDO or the juicy Beefburger + Fries + Drink.",
+  ),
+];
+///////////////
+
+List<FoodItemMenuWidg> sandwitchesList = [
+  FoodItemMenuWidg(
+    price: 40,
+    image:
+        "https://www.mcdonalds.eg/Cms_Data/Contents/En/Media/images/Menu/large-Image/McRoyal.png",
+    title: "McRoyale",
+    description:
+        "A juicy beef patty accompanied by cheese,covered with our special McRoyale sauce, crispy lettuce, fresh tomatoes, zesty onions and pickles all wrapped in a sesame seed bun.",
+  ),
+  FoodItemMenuWidg(
+    price: 50,
+    image:
+        "https://www.mcdonalds.eg/Cms_Data/Contents/En/Media/images/Menu/large-Image/Double-Big-Tasty.png",
+    title: "Double Big Tasty",
+    description:
+        "When one Big Tasty just isn’t enough, go for the Double Big Tasty. It's not only one but two juicy beef patties smothered between slices of emmental cheese, topped with sliced tomato, shredded lettuce, onions and that special Big Tasty sauce",
+  ),
+];
+////////////////
+List<FoodCategoryModel> foodModel = [
+  FoodCategoryModel(catName: "Meals", catMenuItems: mealsList),
+  FoodCategoryModel(catName: "Sandwitches", catMenuItems: sandwitchesList)
 ];

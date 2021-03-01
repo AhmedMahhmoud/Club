@@ -2,9 +2,6 @@ import 'package:demo_club/Widgets/backButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getwidget/components/button/gf_button.dart';
-import 'package:getwidget/shape/gf_button_shape.dart';
-import 'package:getwidget/size/gf_size.dart';
 
 class NewsScreen extends StatelessWidget {
   final String image;
@@ -28,28 +25,24 @@ class NewsScreen extends StatelessWidget {
                       width: double.infinity,
                       child: ClipPath(
                         clipper: WaveClipperOne(flip: true),
-                        child: Stack(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 10),
-                              padding: EdgeInsets.symmetric(horizontal: 20.w),
-                              alignment: Alignment.center,
-                              child: Text(
-                                title,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                                textAlign: TextAlign.right,
-                              ),
-                              height: 190.h,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.red[700],
-                              ),
+                        child: Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          alignment: Alignment.center,
+                          child: Text(
+                            title,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
                             ),
-                          ],
+                            textAlign: TextAlign.right,
+                          ),
+                          height: 190.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.red[700],
+                          ),
                         ),
                       ),
                     ),

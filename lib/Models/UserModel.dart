@@ -8,15 +8,20 @@ class User {
   String id;
   String name;
   String email;
+  String phone;
   String profileImg;
 
-  User({this.email, this.id, this.name, this.profileImg});
+  User({this.email, this.id, this.name, this.profileImg, this.phone});
 }
 
 class UserData with ChangeNotifier {
   bool loggedIn = false;
-  User user =
-      User(email: "ahmed@gmail.com", id: "1234", name: "Ahmed", profileImg: "");
+  User user = User(
+      email: "ahmed@gmail.com",
+      id: "1234",
+      name: "احمد محمود عبد الحميد",
+      profileImg: "",
+      phone: "01112601115");
 
   logout(BuildContext context) {
     loggedIn = false;
@@ -25,6 +30,20 @@ class UserData with ChangeNotifier {
         MaterialPageRoute(
           builder: (context) => MyHomePage(),
         ));
+  }
+
+  update(User newUser) {
+    if (newUser.email != "") {
+      user.email = newUser.email;
+    }
+    if (newUser.name != "") {
+      user.name = newUser.name;
+    }
+    if (newUser.phone != "") {
+      user.phone = newUser.phone;
+    }
+
+    notifyListeners();
   }
 
   login(String id, BuildContext context) {

@@ -4,6 +4,9 @@ import 'package:demo_club/Widgets/backButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../Screens/Home.dart';
+
 class SportsScreen extends StatefulWidget {
   @override
   _SportsScreenState createState() => _SportsScreenState();
@@ -17,56 +20,20 @@ class _SportsScreenState extends State<SportsScreen> {
       body: Stack(
         children: [
           Container(
+            color: Colors.black,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                Container(
-                  height: 80,
-                  width: double.infinity,
-                  color: Colors.black,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image(
-                          width: 40.w,
-                          height: 45.h,
-                          fit: BoxFit.fitHeight,
-                          image: NetworkImage(
-                              "https://seeklogo.com/images/A/Al_Ahly_Club-logo-BA70BE3AE8-seeklogo.com.png"),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          " العاب النادى الأهلى",
-                          style: TextStyle(color: Colors.white, fontSize: 17),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                UserHeader2(),
                 Expanded(
                   child: ListView.builder(
                     itemCount: sportsList.length,
                     itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ActivitiesDetails(
-                                  sportsList[index].image,
-                                  index,
-                                ),
-                              ));
-                        },
-                        child: SportsActivitiesCard(
-                          index: index,
-                          image: sportsList[index].image,
-                          title: sportsList[index].title,
-                        ),
+                      return SportsActivitiesCard(
+                        index: index,
+                        image: sportsList[index].image,
+                        title: sportsList[index].title,
                       );
                     },
                   ),
@@ -93,36 +60,94 @@ class SportsActivitiesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.black,
-          border: Border.all(width: 1, color: Colors.white)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Container(
-            width: double.infinity,
-            height: 150.h,
-            child: Hero(
-              tag: index,
-              child: Image(
-                fit: BoxFit.fill,
-                image: NetworkImage(image),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ActivitiesDetails(sportsList[index].image, index, 0),
+                  ));
+            },
+            child: Container(
+              decoration: BoxDecoration(),
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+                child: Hero(
+                  tag: index,
+                  child: Container(
+                    child: Image(
+                      width: double.infinity,
+                      height: 160.h,
+                      fit: BoxFit.cover,
+                      image: NetworkImage(image),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            title,
-            style: TextStyle(
-                color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          )
+          Container(
+              decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(15)),
+                  color: Colors.white,
+                  border: Border.all(width: 1, color: Colors.red[700])),
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15),
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ActivitiesDetails(
+                              sportsList[index].image, index, 2),
+                        )),
+                    child: Column(
+                      children: [
+                        FaIcon(FontAwesomeIcons.calendarAlt),
+                        Text(
+                          "الحجز",
+                          style: TextStyle(fontWeight: FontWeight.w800),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 3,
+                    height: 40,
+                    color: Colors.grey,
+                  ),
+                  InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ActivitiesDetails(
+                              sportsList[index].image, index, 0),
+                        )),
+                    child: Column(
+                      children: [
+                        FaIcon(FontAwesomeIcons.info),
+                        Text(
+                          "الأكاديمية",
+                          style: TextStyle(fontWeight: FontWeight.w800),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ))
         ],
       ),
-      width: double.infinity,
-      height: 200.h,
     );
   }
 }

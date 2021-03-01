@@ -16,8 +16,9 @@ import 'MyHomePage.dart';
 
 class ActivitiesDetails extends StatefulWidget {
   final String image;
+  final pageIndex;
   final int index;
-  ActivitiesDetails(this.image, this.index);
+  ActivitiesDetails(this.image, this.index, this.pageIndex);
   @override
   _ActivitiesDetailsState createState() => _ActivitiesDetailsState();
 }
@@ -38,6 +39,7 @@ var selectedAge = ageRange.first;
 
 class _ActivitiesDetailsState extends State<ActivitiesDetails> {
   var selectedCat = 0;
+
   toggleCat(int newind) {
     setState(() {
       selectedCat = newind;
@@ -46,7 +48,14 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
         duration: Duration(milliseconds: 400), curve: Curves.easeInExpo);
   }
 
-  static final _pageController = PageController();
+  PageController _pageController = PageController();
+  @override
+  void initState() {
+    selectedCat = widget.pageIndex;
+    _pageController = PageController(initialPage: widget.pageIndex);
+    super.initState();
+  }
+
   final _controller = ScrollController();
   @override
   Widget build(BuildContext context) {

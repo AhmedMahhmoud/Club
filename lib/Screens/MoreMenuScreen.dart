@@ -1,6 +1,8 @@
 import 'package:demo_club/Models/UserModel.dart';
 import 'package:demo_club/Screens/MyHomePage.dart';
 import 'package:demo_club/Screens/SportsScreen.dart';
+import 'package:demo_club/Screens/UserProfile.dart';
+import 'package:demo_club/Widgets/AlertDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,55 +25,40 @@ class MoreMenuScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 CategoryNameRow(
-                  catTitle: "الأقسام",
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                MoreRowItem(
-                  title: "الألعاب الرياضية",
-                  iconData: FontAwesomeIcons.running,
-                  function: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SportsScreen(),
-                        ));
-                  },
-                ),
-                Divider(
-                  color: Colors.white,
-                ),
-                MoreRowItem(
-                  title: "الرحلات",
-                  iconData: FontAwesomeIcons.plane,
-                ),
-                Divider(
-                  color: Colors.white,
-                ),
-                MoreRowItem(
-                  title: "المطاعم",
-                  iconData: FontAwesomeIcons.store,
-                ),
-                Divider(
-                  color: Colors.white,
-                ),
-                MoreRowItem(
-                  title: "تصريح دخول البوابة",
-                  iconData: FontAwesomeIcons.idCard,
-                ),
-                Divider(
-                  color: Colors.white,
-                ),
-                CategoryNameRow(
                   catTitle: "الأعدادات",
                 ),
                 Divider(
                   color: Colors.white,
                 ),
-                MoreRowItem(
-                  title: "الحساب الشخصي",
-                  iconData: FontAwesomeIcons.user,
+                GestureDetector(
+                  onTap: () {
+                    loggedUser
+                        ? Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ))
+                        : showDialog(
+                            context: context,
+                            builder: (context) {
+                              return RoundedAlert(
+                                onPressed: () {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                        builder: (context) => MyHomePage(),
+                                      ),
+                                      (route) => false);
+                                },
+                                buttonName: "تسجيل الدخول",
+                                title: "برجاء تسجيل الدخول",
+                                content:
+                                    "تحتاج الي تسجيل الدخول لعرض الحساب الشخصي",
+                              );
+                            },
+                          );
+                  },
+                  child: MoreRowItem(
+                    title: "الحساب الشخصي",
+                    iconData: FontAwesomeIcons.user,
+                  ),
                 ),
                 Divider(
                   color: Colors.white,

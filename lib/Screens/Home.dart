@@ -2,9 +2,15 @@ import 'dart:ui';
 
 import 'package:demo_club/Models/UserModel.dart';
 import 'package:demo_club/Screens/NewsDetails.dart';
+import 'package:demo_club/Screens/ServicesScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:getwidget/components/avatar/gf_avatar.dart';
+import 'package:getwidget/components/badge/gf_badge.dart';
+
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:animations/animations.dart';
 import 'dart:math' as math;
@@ -20,7 +26,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
   List<BottomnavBar> mylist = [
     BottomnavBar(
       text: "المزيد",
@@ -51,6 +57,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var loggedUser = Provider.of<UserData>(context, listen: false).loggedIn;
+
     return selectedIndex == 1
         ? GestureDetector(
             onTap: () {
@@ -60,7 +67,7 @@ class _HomeState extends State<Home> {
               bottomNavigationBar: BottomAppBar(
                 shape: const CustomNotchedRectangle(),
                 child: Container(
-                    padding: EdgeInsets.only(top: 10, left: 10),
+                    padding: EdgeInsets.only(top: 10.h, left: 10.w),
                     height: 70.0.h,
                     width: MediaQuery.of(context).size.width,
                     child: Row(
@@ -116,101 +123,91 @@ class _HomeState extends State<Home> {
                   children: [
                     loggedUser
                         ? Expanded(
-                            child: Container(
-                            padding: EdgeInsets.all(15),
                             child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Notofications(),
-                                    UserHeader(),
-                                  ],
-                                ),
-                                SizedBox(height: 20.h),
-                                Expanded(
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      width: double.infinity,
-                                      child: Swiper(
-                                        autoplay: true,
-                                        autoplayDelay: 4000,
-                                        fade: 0.2,
-                                        itemCount: newslist.length,
-                                        itemBuilder: (context, index) {
-                                          return GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        NewsScreen(
-                                                      index: index,
-                                                      image:
-                                                          newslist[index].image,
-                                                      title: newslist[index]
-                                                          .newsTitle,
-                                                    ),
-                                                  ));
-                                            },
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft: Radius
-                                                                .circular(10),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    10)),
-                                                    child: Hero(
-                                                      tag: index,
-                                                      child: Image(
-                                                        width: double.infinity,
-                                                        height: 180,
-                                                        fit: BoxFit.cover,
-                                                        image: NetworkImage(
-                                                            newslist[index]
-                                                                .image),
-                                                      ),
+                            children: [
+                              UserHeader2(),
+                              Expanded(
+                                child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    width: double.infinity,
+                                    child: Swiper(
+                                      autoplay: true,
+                                      autoplayDelay: 4000,
+                                      fade: 0.2,
+                                      itemCount: newslist.length,
+                                      itemBuilder: (context, index) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      NewsScreen(
+                                                    index: index,
+                                                    image:
+                                                        newslist[index].image,
+                                                    title: newslist[index]
+                                                        .newsTitle,
+                                                  ),
+                                                ));
+                                          },
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  10),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  10)),
+                                                  child: Hero(
+                                                    tag: index,
+                                                    child: Image(
+                                                      width: double.infinity,
+                                                      height: 160.h,
+                                                      fit: BoxFit.cover,
+                                                      image: NetworkImage(
+                                                          newslist[index]
+                                                              .image),
                                                     ),
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 15),
-                                                    width: double.infinity,
-                                                    color: Colors.white
-                                                        .withOpacity(0.8),
-                                                    child: Text(
-                                                      newslist[index].newsTitle,
-                                                      style: TextStyle(
-                                                          color: Colors
-                                                              .orange[700],
-                                                          fontWeight:
-                                                              FontWeight.w800),
-                                                      textAlign:
-                                                          TextAlign.right,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 2,
-                                                    ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 15.w,
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      )),
-                                )
-                              ],
-                            ),
+                                                  width: double.infinity,
+                                                  color: Colors.white,
+                                                  child: Text(
+                                                    newslist[index].newsTitle,
+                                                    style: TextStyle(
+                                                        color:
+                                                            Colors.orange[700],
+                                                        fontSize: 13,
+                                                        fontWeight:
+                                                            FontWeight.w800),
+                                                    textAlign: TextAlign.right,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 2,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    )),
+                              )
+                            ],
                           ))
                         : Container(
                             height: 350.h,
@@ -250,7 +247,7 @@ class _HomeState extends State<Home> {
                           )),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Expanded(
                       child: Padding(
@@ -299,7 +296,7 @@ class _HomeState extends State<Home> {
                 bottomNavigationBar: BottomAppBar(
                   shape: const CustomNotchedRectangle(),
                   child: Container(
-                      padding: EdgeInsets.only(top: 10, left: 10),
+                      padding: EdgeInsets.only(top: 10.h, left: 10.w),
                       height: 70.0.h,
                       width: MediaQuery.of(context).size.width,
                       child: Row(
@@ -349,20 +346,7 @@ class _HomeState extends State<Home> {
                 ),
                 backgroundColor: Colors.black,
                 body: loggedUser
-                    ? Container(
-                        padding: EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Notofications(),
-                                UserHeader(),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
+                    ? ServicesScreen()
                     : RoundedAlert(
                         onPressed: () {
                           Navigator.of(context).pushAndRemoveUntil(
@@ -434,6 +418,80 @@ class _HomeState extends State<Home> {
   }
 }
 
+class UserHeader2 extends StatelessWidget {
+  const UserHeader2({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipPath(
+      clipper: WaveClipperOne(
+        flip: true,
+      ),
+      child: Container(
+        padding: EdgeInsets.all(5),
+        color: Colors.red[900],
+        height: 110.h,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Notofications(),
+            UserHeader(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class GridViewItemsWidg extends StatelessWidget {
+  final String iconData;
+  final String title;
+  final Widget function;
+
+  GridViewItemsWidg({
+    this.iconData,
+    this.function,
+    this.title,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  child: Center(
+                      child: Lottie.asset(
+                    iconData,
+                    repeat: true,
+                  )),
+                  height: 120.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15)),
+                  ),
+                ),
+                Text(
+                  title,
+                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
 class Notofications extends StatelessWidget {
   const Notofications({
     Key key,
@@ -445,28 +503,19 @@ class Notofications extends StatelessWidget {
       children: [
         Hero(
           tag: "ahly",
-          child: Image(
-            width: 30.w,
-            height: 35.h,
-            fit: BoxFit.fitHeight,
-            image: NetworkImage(
-                "https://seeklogo.com/images/A/Al_Ahly_Club-logo-BA70BE3AE8-seeklogo.com.png"),
+          child: Container(
+            padding: EdgeInsets.all(4),
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+            child: Image(
+              width: 35.w,
+              height: 35.h,
+              fit: BoxFit.fitHeight,
+              image: NetworkImage(
+                  "https://seeklogo.com/images/A/Al_Ahly_Club-logo-BA70BE3AE8-seeklogo.com.png"),
+            ),
           ),
         ),
-        Positioned(
-          right: 0,
-          top: 0,
-          child: Container(
-              padding: EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.red[800],
-              ),
-              child: Text(
-                "1",
-                style: TextStyle(color: Colors.white, fontSize: 11),
-              )),
-        )
       ],
     );
   }
@@ -484,7 +533,7 @@ class UserHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          "احمد محمود عبد الحميد",
+          Provider.of<UserData>(context, listen: false).user.name,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800),
         ),
         SizedBox(
@@ -497,11 +546,23 @@ class UserHeader extends StatelessWidget {
                 width: 1,
                 color: Colors.white,
               )),
-          child: GFAvatar(
-            backgroundColor: Colors.white,
-            radius: 30,
-            backgroundImage: NetworkImage(
-                "https://scontent.fcai21-2.fna.fbcdn.net/v/t1.0-9/79803978_2206482966119329_7485546926507556864_n.jpg?_nc_cat=108&ccb=3&_nc_sid=174925&_nc_eui2=AeHHQqdJBe1wPzn5bN-SOqIRtDQyKomkcn20NDIqiaRyfe1QwPHwKm5pkbWX0A0KvHxDNuCahayPeOmbX7gWDbNG&_nc_ohc=-7xnIwcJ6JcAX8sKi4C&_nc_ht=scontent.fcai21-2.fna&oh=05115c7a72aa71660088d476e3121e95&oe=605DC125"),
+          child: Stack(
+            children: [
+              GFAvatar(
+                backgroundColor: Colors.white,
+                radius: 30,
+                backgroundImage: NetworkImage(
+                    "https://scontent.fcai21-2.fna.fbcdn.net/v/t1.0-9/79803978_2206482966119329_7485546926507556864_n.jpg?_nc_cat=108&ccb=3&_nc_sid=174925&_nc_eui2=AeHHQqdJBe1wPzn5bN-SOqIRtDQyKomkcn20NDIqiaRyfe1QwPHwKm5pkbWX0A0KvHxDNuCahayPeOmbX7gWDbNG&_nc_ohc=-7xnIwcJ6JcAX8sKi4C&_nc_ht=scontent.fcai21-2.fna&oh=05115c7a72aa71660088d476e3121e95&oe=605DC125"),
+              ),
+              Positioned(
+                right: 0,
+                top: 0,
+                child: GFBadge(
+                  color: Colors.red[700],
+                  child: Text("1"),
+                ),
+              )
+            ],
           ),
         ),
       ],
@@ -764,7 +825,7 @@ class AnimatedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OpenContainer(
-      transitionDuration: Duration(milliseconds: 500),
+      transitionDuration: Duration(milliseconds: 300),
       closedBuilder: (context, action) {
         return card;
       },
