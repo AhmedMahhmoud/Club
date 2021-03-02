@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:demo_club/Models/UserModel.dart';
 import 'package:demo_club/Screens/NewsDetails.dart';
+import 'package:demo_club/Screens/Notifications.dart';
 import 'package:demo_club/Screens/ServicesScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -557,9 +558,16 @@ class UserHeader extends StatelessWidget {
               Positioned(
                 right: 0,
                 top: 0,
-                child: GFBadge(
-                  color: Colors.red[700],
-                  child: Text("1"),
+                child: InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationsScreen(),
+                      )),
+                  child: GFBadge(
+                    color: Colors.red[700],
+                    child: Text(notificationList.length.toString()),
+                  ),
                 ),
               )
             ],

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'Home.dart';
+
 class NewsScreen extends StatelessWidget {
   final String image;
   final String title;
@@ -116,7 +118,11 @@ class NewsScreen extends StatelessWidget {
                   ),
                 ),
               )),
-          BackkIcon()
+          BackkIcon(function: (){   Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Home(),
+            ));},)
         ],
       ),
     );

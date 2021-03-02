@@ -1,12 +1,15 @@
 import 'package:demo_club/Models/FoodCategory.dart';
 import 'package:demo_club/Models/UserModel.dart';
-import 'package:demo_club/Screens/Home.dart';
+import 'package:demo_club/Screens/RestaurantAfterQr.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import 'Models/RestaurantCart.dart';
 import 'Screens/MyHomePage.dart';
-import 'Screens/RestaurantAfterQr.dart';
+import 'Screens/Notifications.dart';
+import 'Screens/QrGateAccess.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,7 +29,10 @@ class MyApp extends StatelessWidget {
                 ),
                 ChangeNotifierProvider(
                   create: (context) => FoodService(),
-                )
+                ),
+                ChangeNotifierProvider(
+                  create: (context) => RestaurantCart(),
+                ),
               ],
               child: MaterialApp(
                 debugShowCheckedModeBanner: false,

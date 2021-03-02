@@ -1,8 +1,11 @@
+import 'package:demo_club/Screens/Home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BackkIcon extends StatelessWidget {
+  final Function function;
   const BackkIcon({
+   @required this.function,
     Key key,
   }) : super(key: key);
 
@@ -15,9 +18,7 @@ class BackkIcon extends StatelessWidget {
         color: Colors.white,
         size: 40,
       ),
-      onPressed: () {
-        Navigator.pop(context);
-      },
+      onPressed: function,
     ));
   }
 }

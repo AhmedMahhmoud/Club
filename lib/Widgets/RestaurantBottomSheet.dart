@@ -1,4 +1,6 @@
 import 'package:demo_club/Models/FoodCategory.dart';
+import 'package:demo_club/Models/FoodData.dart';
+import 'package:demo_club/Models/RestaurantCart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,6 +11,7 @@ import 'NewsTilesList.dart';
 Future restaurantBottomSheet(
     BuildContext context, int index, int selectedFood) {
   var prov = Provider.of<FoodService>(context, listen: false);
+  var cartItem = foodModel[selectedFood].catMenuItems[index];
   prov.setTotal(
     foodModel[selectedFood].catMenuItems[index].price,
   );
@@ -128,15 +131,23 @@ Future restaurantBottomSheet(
                     child: Container(
                       margin: EdgeInsets.symmetric(vertical: 10.h),
                       child: Text(
-                        foodModel[selectedFood].catMenuItems[index].description,
+                        cartItem.description,
                         style: TextStyle(
                             color: Colors.grey, fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
                   Spacer(),
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
+                      Provider.of<RestaurantCart>(context, listen: false)
+                          .addItemToCart(FoodData(
+                              image: cartItem.image,
+                              itemName: cartItem.title,
+                              itemPrice: value.total,
+                              itemQuantity: value.startIndex));
+                      Provider.of<RestaurantCart>(context, listen: false)
+                          .calculateTotalPrice(value.total);
                       Fluttertoast.showToast(
                           msg: "Item placed successfully to your basket",
                           backgroundColor: Colors.red[700],

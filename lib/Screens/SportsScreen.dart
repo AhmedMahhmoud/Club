@@ -41,7 +41,11 @@ class _SportsScreenState extends State<SportsScreen> {
               ],
             ),
           ),
-          BackkIcon()
+          BackkIcon(
+            function: () {
+              Navigator.pop(context);
+            },
+          )
         ],
       ),
     );

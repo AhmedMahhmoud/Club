@@ -9,6 +9,7 @@ class FoodCategoryModel {
 }
 
 class FoodService with ChangeNotifier {
+  
   double total = 0;
   double mainPrice = 0;
   int startIndex = 1;

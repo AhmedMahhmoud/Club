@@ -341,7 +341,11 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
               ],
             ),
           ),
-          BackkIcon()
+          BackkIcon(
+            function: () {
+              Navigator.pop(context);
+            },
+          )
         ],
       ),
     );

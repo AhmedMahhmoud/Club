@@ -10,6 +10,8 @@ import 'package:getwidget/shape/gf_button_shape.dart';
 import 'package:getwidget/size/gf_size.dart';
 import 'package:provider/provider.dart';
 
+import 'Home.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -159,7 +161,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                   )),
-              BackkIcon()
+              BackkIcon(
+                function: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ));
+                },
+              )
             ],
           ),
         ),

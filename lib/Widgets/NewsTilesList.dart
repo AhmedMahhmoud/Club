@@ -1,13 +1,12 @@
 import 'package:demo_club/Models/FoodCategory.dart';
+import 'package:demo_club/Screens/QrGateAccess.dart';
 import 'package:demo_club/Screens/Restaurant.dart';
 import 'package:demo_club/Screens/RestaurantAfterQr.dart';
 import 'package:demo_club/Screens/SportsActivitiesDetails.dart';
 import 'package:demo_club/Screens/SportsScreen.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../Models/NotificationModel.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import '../Screens/Notifications.dart';
 import '../Screens/Home.dart';
 import 'RestaurantBottomSheet.dart';
 
@@ -140,6 +139,7 @@ List<GridViewItemsWidg> gridList = [
   GridViewItemsWidg(
     iconData: "android/app/resources/qr.json",
     title: "تصريح دخول النادى",
+    function: GateAccess(),
   ),
   GridViewItemsWidg(
     iconData: "android/app/resources/food.json",
@@ -202,4 +202,21 @@ List<FoodItemMenuWidg> sandwitchesList = [
 List<FoodCategoryModel> foodModel = [
   FoodCategoryModel(catName: "Meals", catMenuItems: mealsList),
   FoodCategoryModel(catName: "Sandwitches", catMenuItems: sandwitchesList)
+];
+////////////////////
+List<NotificationsData> notificationList = [
+  NotificationsData(
+    notificationTitle: "تم افتتاح مطعم جديد في النادى",
+    notoficationSubtitle: "مطعم ماكدونالدز الأن بفرع التجمع ",
+    datetime: "22-2-2021",
+    isSeen: 0,
+    function: RestaurantScreen(),
+  ),
+  NotificationsData(
+    notificationTitle: "تم فتح باب التسجيل في كرة القدم",
+    notoficationSubtitle: "يمكنك الألتحاق بفريق النادي الاهلى الأن  ",
+    datetime: "22-1-2021",
+    isSeen: 0,
+    function: SportsScreen(),
+  ),
 ];
