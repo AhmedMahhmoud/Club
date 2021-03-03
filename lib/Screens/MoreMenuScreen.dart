@@ -2,6 +2,7 @@ import 'package:demo_club/Models/UserModel.dart';
 import 'package:demo_club/Screens/MyHomePage.dart';
 import 'package:demo_club/Screens/SportsScreen.dart';
 import 'package:demo_club/Screens/UserProfile.dart';
+import 'package:demo_club/Screens/contact_us.dart';
 import 'package:demo_club/Widgets/AlertDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -63,9 +64,16 @@ class MoreMenuScreen extends StatelessWidget {
                 Divider(
                   color: Colors.white,
                 ),
-                MoreRowItem(
-                  title: "اتصل بنا",
-                  iconData: FontAwesomeIcons.phone,
+                InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ContactUs(),
+                      )),
+                  child: MoreRowItem(
+                    title: "اتصل بنا",
+                    iconData: FontAwesomeIcons.phone,
+                  ),
                 ),
                 Divider(
                   color: Colors.white,

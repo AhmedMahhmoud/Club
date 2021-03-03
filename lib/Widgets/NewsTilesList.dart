@@ -1,17 +1,52 @@
 import 'package:demo_club/Models/FoodCategory.dart';
+import 'package:demo_club/Screens/OfferScren.dart';
 import 'package:demo_club/Screens/QrGateAccess.dart';
 import 'package:demo_club/Screens/Restaurant.dart';
-import 'package:demo_club/Screens/RestaurantAfterQr.dart';
+
 import 'package:demo_club/Screens/SportsActivitiesDetails.dart';
 import 'package:demo_club/Screens/SportsScreen.dart';
-import '../Models/NotificationModel.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 import '../Screens/Notifications.dart';
 import '../Screens/Home.dart';
 import 'RestaurantBottomSheet.dart';
 
+List<OffersCard> offersList = [
+  OffersCard(
+    address: [
+      "التجمع الخامس ",
+      " 6 أكتوبر التعليمي (الحي الأول امام جهاز المدينة)"
+    ],
+    phone: ["01112601115", "01011212211"],
+    description:
+        "كشف على الأسنان وتلميع وتنظيف الجير بخصم 73% في Dr. Ahmed Abu Zeid Dental Clinic! فقط بـ 149 جنيه بدلا من 550 جنيه",
+    newsTitle: "عياده دكتور حمزة الجندي للأسنان",
+    image:
+        "https://s3-eu-west-1.amazonaws.com/forasna/uploads/logos/thumb_clogo_2020-07-28-12-04-48_NulrRVaXSdnLNtzPZQKAoAXX.jpg",
+  ),
+  OffersCard(
+    address: ["مدينة نصر الحي السابع امام ابو رامي "],
+    newsTitle: "الجلاء و السرايا سكان",
+    image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkyhM7dwFwoPQBbBRWrw4HhuZ2E6YyvHkIlw&usqp=CAU",
+    phone: ["01112601115"],
+    description:
+        "كشف على الأسنان وتلميع وتنظيف الجير بخصم 73% في Dr. Ahmed Abu Zeid Dental Clinic! فقط بـ 149 جنيه بدلا من 550 جنيه",
+  ),
+  OffersCard(
+    phone: ["24595744", "01112405552", "24595711"],
+    address: ["شبرا روض الفرج شارع فخر الدين"],
+    newsTitle: "صيدليات العزبي",
+    description:
+        "خليك في البيت و صيدلية سيف هتجيلك لحد البيت لكل طلبات أسرتك من الدواء و مسحضرات التجميل. احصل على خصم 10% على أول طلباتك من صيدليات سيف اون لاين، اكتب برومو كود - First10. الدفع عند الاستلام. أقوى العروض و الخصومات.",
+    image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTqdrB8yiwL36E-v91p_PEcl6KUyHKnMVprw&usqp=CAU",
+  ),
+];
 List<NewsCard> newslist = [
   NewsCard(
+    description:
+        "بعيدًا عن رمال الشواطئ، نقدم لك دليلًا مختلفًا للاستمتاع بأجواء دافئة وجولة ليوم واحد لا تُنسى تبدأ باستقلال القطار، من محطة مصر بميدان رمسيس في الثامنة وعشر دقائق صباحًا، الدرجة الثانية، وتذكرته تبلغ 30 جنيهًا",
     newsTitle:
         " رحلة يوم واحد لسيدات النادي الأهلي الي الأسكندرية في شهر فبراير",
     image:
@@ -21,19 +56,27 @@ List<NewsCard> newslist = [
     newsTitle: " موسيماني يوضح.. لماذا دفع بـثلاثي في وسط الملعب أمام سيمبا؟",
     image:
         "https://media.gemini.media/img/yallakora/Normal//2021/2/8/etutxhdxmaehfxa2021_2_8_20_50.jpg",
+    description:
+        "كشف الجنوب أفريقي بيتسو موسيماني المدير الفني للفريق الأول بالنادي الأهلي، أسباب الدفع بثلاثة لاعبين في خط الوسط أمام سيمبا التنزاني بدوري أبطال أفريقي",
   ),
   NewsCard(
+    description:
+        "بعيدًا عن رمال الشواطئ، نقدم لك دليلًا مختلفًا للاستمتاع بأجواء دافئة وجولة ليوم واحد لا تُنسى تبدأ باستقلال القطار، من محطة مصر بميدان رمسيس في الثامنة وعشر دقائق صباحًا، الدرجة الثانية، وتذكرته تبلغ 30 جنيهًا",
     newsTitle:
         " رحلة يوم واحد لسيدات النادي الأهلي الي الأسكندرية في شهر فبراير",
     image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA9hO5TrF6XigqSKtM92Kramw6u4Do3ySM5A&usqp=CAU",
   ),
   NewsCard(
+    description:
+        "كشف الجنوب أفريقي بيتسو موسيماني المدير الفني للفريق الأول بالنادي الأهلي، أسباب الدفع بثلاثة لاعبين في خط الوسط أمام سيمبا التنزاني بدوري أبطال أفريقي",
     newsTitle: " موسيماني يوضح.. لماذا دفع بـثلاثي في وسط الملعب أمام سيمبا؟",
     image:
         "https://media.gemini.media/img/yallakora/Normal//2021/2/8/etutxhdxmaehfxa2021_2_8_20_50.jpg",
   ),
   NewsCard(
+    description:
+        "بعيدًا عن رمال الشواطئ، نقدم لك دليلًا مختلفًا للاستمتاع بأجواء دافئة وجولة ليوم واحد لا تُنسى تبدأ باستقلال القطار، من محطة مصر بميدان رمسيس في الثامنة وعشر دقائق صباحًا، الدرجة الثانية، وتذكرته تبلغ 30 جنيهًا",
     newsTitle:
         " رحلة يوم واحد لسيدات النادي الأهلي الي الأسكندرية في شهر فبراير",
     image:
@@ -129,7 +172,7 @@ List<String> imagesGallery = [
 List<GridViewItemsWidg> gridList = [
   GridViewItemsWidg(
     iconData: "android/app/resources/sport.json",
-    title: "الأشتراكات الرياضية",
+    title: "الأنشطة الرياضية",
     function: SportsScreen(),
   ),
   GridViewItemsWidg(
@@ -149,6 +192,11 @@ List<GridViewItemsWidg> gridList = [
   GridViewItemsWidg(
     iconData: "android/app/resources/travel.json",
     title: "الرحلات",
+  ),
+  GridViewItemsWidg(
+    iconData: "android/app/resources/gift.json",
+    title: "العروض",
+    function: OffersScreen(),
   ),
 ];
 ///////////////////

@@ -1,4 +1,5 @@
 import 'package:demo_club/Models/RestaurantCart.dart';
+import 'package:demo_club/Screens/CheckOutPage.dart';
 import 'package:demo_club/Screens/Home.dart';
 import 'package:demo_club/Widgets/CartFoodItemWidget.dart';
 import 'package:demo_club/Widgets/backButton.dart';
@@ -26,19 +27,19 @@ class CartScreen extends StatelessWidget {
                         children: [
                           UserHeader2(),
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 5),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "My Order",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                ),
                                 Lottie.network(
                                     "https://assets10.lottiefiles.com/packages/lf20_yJmXiX.json",
                                     width: 70.w,
-                                    height: 70.h)
+                                    height: 70.h),
+                                Text(
+                                  "الطلب",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
                               ],
                             ),
                           ),
@@ -71,9 +72,9 @@ class CartScreen extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.all(10),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text("Payment Summary",
+                                Text("ملخص الدفع",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16)),
                                 SizedBox(
@@ -83,12 +84,15 @@ class CartScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text("Subtotal",
-                                        style: TextStyle(
-                                            color: Colors.grey, fontSize: 14)),
                                     Text("EGP ${value.totalPrice.toString()}",
                                         style: TextStyle(
                                             color: Colors.grey, fontSize: 14)),
+                                    Text(
+                                      "المبلغ الفرعى",
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 14),
+                                      textAlign: TextAlign.right,
+                                    ),
                                   ],
                                 ),
                                 SizedBox(
@@ -98,12 +102,15 @@ class CartScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text("Service Charge",
-                                        style: TextStyle(
-                                            color: Colors.grey, fontSize: 14)),
                                     Text("EGP 4.99",
                                         style: TextStyle(
                                             color: Colors.grey, fontSize: 14)),
+                                    Text(
+                                      "ضريبة الخدمة",
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 14),
+                                      textAlign: TextAlign.right,
+                                    ),
                                   ],
                                 ),
                                 SizedBox(
@@ -113,12 +120,15 @@ class CartScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text("Total Amount",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 14)),
                                     Text("EGP ${value.totalPrice + 4.99}",
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 14)),
+                                    Text(
+                                      "المبلغ الكلى",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 14),
+                                      textAlign: TextAlign.right,
+                                    ),
                                   ],
                                 ),
                               ],
@@ -137,7 +147,7 @@ class CartScreen extends StatelessWidget {
                                     padding: EdgeInsets.all(10),
                                     child: Center(
                                       child: Text(
-                                        "Add items",
+                                        "اضافة منتجات",
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
@@ -147,20 +157,29 @@ class CartScreen extends StatelessWidget {
                                             width: 1, color: Colors.red[800])),
                                   ),
                                 ),
-                                Container(
-                                  width: 120.w,
-                                  padding: EdgeInsets.all(10),
-                                  child: Center(
-                                    child: Text(
-                                      "Checkout",
-                                      style: TextStyle(color: Colors.white),
+                                GestureDetector(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CheckoutScreen(
+                                          price: value.totalPrice,
+                                        ),
+                                      )),
+                                  child: Container(
+                                    width: 120.w,
+                                    padding: EdgeInsets.all(10),
+                                    child: Center(
+                                      child: Text(
+                                        "الدفع",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.red[800],
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                            width: 1, color: Colors.red[800])),
                                   ),
-                                  decoration: BoxDecoration(
-                                      color: Colors.red[800],
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          width: 1, color: Colors.red[800])),
                                 )
                               ],
                             ),
@@ -180,7 +199,7 @@ class CartScreen extends StatelessWidget {
                                 width: 200.w,
                                 height: 200.h),
                             Text(
-                              "Your basket is empty !",
+                              "السلة فارغة ",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -190,7 +209,7 @@ class CartScreen extends StatelessWidget {
                               height: 20.h,
                             ),
                             Text(
-                              "Please add items to your basket",
+                              "برجاء اضافة منتجات في السلة",
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.bold,
@@ -208,7 +227,7 @@ class CartScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.all(15),
                                 child: Text(
-                                  "Add items",
+                                  "اضافة منتجات",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,

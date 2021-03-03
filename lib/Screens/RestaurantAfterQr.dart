@@ -197,6 +197,8 @@ class _RestaurantQRState extends State<RestaurantQR> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
+                                  Text("EGP ${value.totalPrice} الأجمالى ",
+                                      style: TextStyle(color: Colors.white)),
                                   Row(
                                     children: [
                                       Container(
@@ -216,13 +218,11 @@ class _RestaurantQRState extends State<RestaurantQR> {
                                       SizedBox(
                                         width: 10.w,
                                       ),
-                                      Text("View Basket",
+                                      Text("فتح السلة",
                                           style:
                                               TextStyle(color: Colors.white)),
                                     ],
                                   ),
-                                  Text("Total EGP ${value.totalPrice}",
-                                      style: TextStyle(color: Colors.white))
                                 ],
                               ),
                             ),
@@ -234,7 +234,8 @@ class _RestaurantQRState extends State<RestaurantQR> {
               function: () {
                 Navigator.pop(context);
               },
-            )
+            ),
+          
           ],
         ),
       ),

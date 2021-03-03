@@ -45,7 +45,12 @@ class _SportsScreenState extends State<SportsScreen> {
             function: () {
               Navigator.pop(context);
             },
-          )
+          ),
+          Positioned(
+            top: 40.h,
+            left: 10.w,
+            child: Notofications(),
+          ),
         ],
       ),
     );

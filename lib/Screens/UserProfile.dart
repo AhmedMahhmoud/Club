@@ -163,11 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   )),
               BackkIcon(
                 function: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                      ));
+                  Navigator.pop(context);
                 },
               )
             ],

@@ -2,9 +2,11 @@ import 'package:demo_club/Screens/SportsScreen.dart';
 import 'package:demo_club/Widgets/NewsTilesList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:getwidget/components/animation/gf_animation.dart';
 import 'package:getwidget/types/gf_animation_type.dart';
 import '../Screens/Home.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ServicesScreen extends StatefulWidget {
   @override
@@ -74,6 +76,11 @@ class _ServicesScreenState extends State<ServicesScreen>
             ],
           ),
         ),
+        Positioned(
+          top: 40.h,
+          left: 10.w,
+          child: Notofications(),
+        )
       ],
     );
   }

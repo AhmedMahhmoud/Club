@@ -32,41 +32,55 @@ class _GateAccessState extends State<GateAccess> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Scaffold(
           backgroundColor: Colors.black,
-          body: Stack(children: <Widget>[
-            Column(
-              children: <Widget>[
-                UserHeader2(),
-                Expanded(
-                  child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          "الأعضاء فقط يمكنهم الدخول عبر مسح الكود على البوابة",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w700),
-                        ),
-                        Countdown(
-                          animation: StepTween(
-                            begin: levelClock,
-                            end: 0,
-                          ).animate(_controller),
-                        ),
-                      ],
+          body: Stack(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  UserHeader2(),
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "الأعضاء فقط يمكنهم الدخول عبر مسح الكود على البوابة",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Countdown(
+                            animation: StepTween(
+                              begin: levelClock,
+                              end: 0,
+                            ).animate(_controller),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            BackkIcon(function: () {
-              Navigator.pop(context);
-            })
-          ])),
+                ],
+              ),
+              BackkIcon(function: () {
+                Navigator.pop(context);
+              }),
+              Positioned(
+                top: 40.h,
+                left: 10.w,
+                child: Notofications(),
+              ),
+            ],
+          )),
     );
   }
 }

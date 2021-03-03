@@ -1,5 +1,7 @@
 import 'package:demo_club/Models/FoodCategory.dart';
 import 'package:demo_club/Models/UserModel.dart';
+import 'package:demo_club/Screens/MyHomePage.dart';
+import 'package:demo_club/Screens/OfferScren.dart';
 import 'package:demo_club/Screens/RestaurantAfterQr.dart';
 
 import 'package:flutter/material.dart';
@@ -7,9 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'Models/RestaurantCart.dart';
-import 'Screens/MyHomePage.dart';
-import 'Screens/Notifications.dart';
-import 'Screens/QrGateAccess.dart';
+import 'Screens/CheckOutPage.dart';
 
 void main() {
   runApp(MyApp());

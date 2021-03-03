@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:demo_club/Models/UserModel.dart';
+import 'package:demo_club/Screens/CreditCard.dart';
 import 'package:demo_club/Widgets/AlertDialog.dart';
 import 'package:demo_club/Widgets/NewsTilesList.dart';
 import 'package:demo_club/Widgets/backButton.dart';
@@ -201,7 +202,13 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                         color: Colors.red,
                         height: 45.h,
                         child: GFButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PaymentScreen(),
+                                ));
+                          },
                           text: "اتمام الحجز",
                           size: GFSize.LARGE,
                           shape: GFButtonShape.square,

@@ -117,30 +117,163 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 child: Icon(Icons.home),
               ),
               backgroundColor: Colors.black,
-              body: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: [
-                    loggedUser
-                        ? Expanded(
-                            child: Column(
-                            children: [
-                              UserHeader2(),
-                              Expanded(
-                                child: Container(
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    width: double.infinity,
-                                    child: Swiper(
-                                      autoplay: true,
-                                      autoplayDelay: 4000,
-                                      fade: 0.2,
-                                      itemCount: newslist.length,
-                                      itemBuilder: (context, index) {
-                                        return GestureDetector(
+              body: Stack(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: [
+                        loggedUser
+                            ? Expanded(
+                                child: Column(
+                                children: [
+                                  UserHeader2(),
+                                  Expanded(
+                                    child: Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        width: double.infinity,
+                                        child: Swiper(
+                                          autoplay: true,
+                                          autoplayDelay: 4000,
+                                          fade: 0.2,
+                                          itemCount: newslist.length,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          NewsScreen(
+                                                        index: index,
+                                                        image: newslist[index]
+                                                            .image,
+                                                        title: newslist[index]
+                                                            .newsTitle,
+                                                      ),
+                                                    ));
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topLeft: Radius
+                                                                  .circular(10),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      10)),
+                                                      child: Hero(
+                                                        tag: index,
+                                                        child: Image(
+                                                          width:
+                                                              double.infinity,
+                                                          height: 160.h,
+                                                          fit: BoxFit.cover,
+                                                          image: NetworkImage(
+                                                              newslist[index]
+                                                                  .image),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                        horizontal: 15.w,
+                                                      ),
+                                                      width: double.infinity,
+                                                      color: Colors.white,
+                                                      child: Text(
+                                                        newslist[index]
+                                                            .newsTitle,
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .orange[700],
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w800),
+                                                        textAlign:
+                                                            TextAlign.right,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        maxLines: 2,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        )),
+                                  )
+                                ],
+                              ))
+                            : Container(
+                                height: 350.h,
+                                child: ClipperWidget(
+                                  title: " اخبار النادي",
+                                ),
+                              ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          alignment: Alignment.topRight,
+                          width: MediaQuery.of(context).size.width - 10.w,
+                          height: 40.h,
+                          child: Align(
+                              alignment: Alignment.centerRight,
+                              child: ListView.builder(
+                                reverse: true,
+                                shrinkWrap: true,
+                                itemBuilder: (context, ind) {
+                                  return Container(
+                                    margin: EdgeInsets.symmetric(horizontal: 3),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        toggleSelectedCat(ind);
+                                      },
+                                      child: NewsHeaders(
+                                        headName: headerList[ind].headName,
+                                        colorHead: categoryIndex == ind
+                                            ? Colors.orange[700]
+                                            : Colors.red[900],
+                                        size: categoryIndex == ind ? 24 : 15,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                itemCount: headerList.length,
+                                scrollDirection: Axis.horizontal,
+                              )),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Container(
+                              child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return categoryIndex == 0
+                                      ? AnimatedPage(
+                                          card: newslist[index],
+                                          secondScreen: NewsScreen(
+                                            index: index,
+                                            description:
+                                                newslist[index].description,
+                                            image: newslist[index].image,
+                                            title: newslist[index].newsTitle,
+                                          ),
+                                        )
+                                      : InkWell(
                                           onTap: () {
                                             Navigator.push(
                                                 context,
@@ -149,146 +282,30 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                                       NewsScreen(
                                                     index: index,
                                                     image:
-                                                        newslist[index].image,
-                                                    title: newslist[index]
+                                                        sportsNews[index].image,
+                                                    title: sportsNews[index]
                                                         .newsTitle,
                                                   ),
                                                 ));
                                           },
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  10)),
-                                                  child: Hero(
-                                                    tag: index,
-                                                    child: Image(
-                                                      width: double.infinity,
-                                                      height: 160.h,
-                                                      fit: BoxFit.cover,
-                                                      image: NetworkImage(
-                                                          newslist[index]
-                                                              .image),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal: 15.w,
-                                                  ),
-                                                  width: double.infinity,
-                                                  color: Colors.white,
-                                                  child: Text(
-                                                    newslist[index].newsTitle,
-                                                    style: TextStyle(
-                                                        color:
-                                                            Colors.orange[700],
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                    textAlign: TextAlign.right,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    maxLines: 2,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    )),
-                              )
-                            ],
-                          ))
-                        : Container(
-                            height: 350.h,
-                            child: ClipperWidget(
-                              title: " اخبار النادي",
+                                          child: sportsNews[index]);
+                                },
+                                itemCount: categoryIndex == 0
+                                    ? newslist.length
+                                    : sportsNews.length,
+                              ),
                             ),
                           ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      alignment: Alignment.topRight,
-                      width: MediaQuery.of(context).size.width - 10.w,
-                      height: 40.h,
-                      child: Align(
-                          alignment: Alignment.centerRight,
-                          child: ListView.builder(
-                            reverse: true,
-                            shrinkWrap: true,
-                            itemBuilder: (context, ind) {
-                              return Container(
-                                margin: EdgeInsets.symmetric(horizontal: 3),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    toggleSelectedCat(ind);
-                                  },
-                                  child: NewsHeaders(
-                                    headName: headerList[ind].headName,
-                                    colorHead: categoryIndex == ind
-                                        ? Colors.orange[700]
-                                        : Colors.red[900],
-                                    size: categoryIndex == ind ? 24 : 15,
-                                  ),
-                                ),
-                              );
-                            },
-                            itemCount: headerList.length,
-                            scrollDirection: Axis.horizontal,
-                          )),
+                        )
+                      ],
                     ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Container(
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              return categoryIndex == 0
-                                  ? AnimatedPage(
-                                      card: newslist[index],
-                                      secondScreen: NewsScreen(
-                                        index: index,
-                                        image: newslist[index].image,
-                                        title: newslist[index].newsTitle,
-                                      ),
-                                    )
-                                  : InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => NewsScreen(
-                                                index: index,
-                                                image: sportsNews[index].image,
-                                                title:
-                                                    sportsNews[index].newsTitle,
-                                              ),
-                                            ));
-                                      },
-                                      child: sportsNews[index]);
-                            },
-                            itemCount: categoryIndex == 0
-                                ? newslist.length
-                                : sportsNews.length,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Positioned(
+                    top: 40.h,
+                    left: 10.w,
+                    child: Notofications(),
+                  ),
+                ],
               ),
             ),
           )
@@ -434,13 +451,7 @@ class UserHeader2 extends StatelessWidget {
         padding: EdgeInsets.all(5),
         color: Colors.red[900],
         height: 110.h,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Notofications(),
-            UserHeader(),
-          ],
-        ),
+        child: UserHeader(),
       ),
     );
   }
@@ -500,24 +511,21 @@ class Notofications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Hero(
-          tag: "ahly",
-          child: Container(
-            padding: EdgeInsets.all(4),
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-            child: Image(
-              width: 35.w,
-              height: 35.h,
-              fit: BoxFit.fitHeight,
-              image: NetworkImage(
-                  "https://seeklogo.com/images/A/Al_Ahly_Club-logo-BA70BE3AE8-seeklogo.com.png"),
-            ),
-          ),
+    return Hero(
+      tag: "ahly",
+      child: Container(
+        width: 80.w,
+        height: 80.h,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(width: 4, color: Colors.red[900])),
+        child: GFAvatar(
+          backgroundColor: Colors.white,
+          radius: 20,
+          backgroundImage: NetworkImage(
+              "https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515361_10542.jpg"),
         ),
-      ],
+      ),
     );
   }
 }
@@ -549,11 +557,18 @@ class UserHeader extends StatelessWidget {
               )),
           child: Stack(
             children: [
-              GFAvatar(
-                backgroundColor: Colors.white,
-                radius: 30,
-                backgroundImage: NetworkImage(
-                    "https://scontent.fcai21-2.fna.fbcdn.net/v/t1.0-9/79803978_2206482966119329_7485546926507556864_n.jpg?_nc_cat=108&ccb=3&_nc_sid=174925&_nc_eui2=AeHHQqdJBe1wPzn5bN-SOqIRtDQyKomkcn20NDIqiaRyfe1QwPHwKm5pkbWX0A0KvHxDNuCahayPeOmbX7gWDbNG&_nc_ohc=-7xnIwcJ6JcAX8sKi4C&_nc_ht=scontent.fcai21-2.fna&oh=05115c7a72aa71660088d476e3121e95&oe=605DC125"),
+              InkWell(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NotificationsScreen(),
+                    )),
+                child: GFAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 30,
+                  backgroundImage: NetworkImage(
+                      "https://scontent.fcai21-2.fna.fbcdn.net/v/t1.0-9/79803978_2206482966119329_7485546926507556864_n.jpg?_nc_cat=108&ccb=3&_nc_sid=174925&_nc_eui2=AeHHQqdJBe1wPzn5bN-SOqIRtDQyKomkcn20NDIqiaRyfe1QwPHwKm5pkbWX0A0KvHxDNuCahayPeOmbX7gWDbNG&_nc_ohc=-7xnIwcJ6JcAX8sKi4C&_nc_ht=scontent.fcai21-2.fna&oh=05115c7a72aa71660088d476e3121e95&oe=605DC125"),
+                ),
               ),
               Positioned(
                 right: 0,
@@ -694,13 +709,18 @@ class _BottomnavBarState extends State<BottomnavBar> {
   }
 }
 
-class NewsCard extends StatelessWidget {
+class OffersCard extends StatelessWidget {
   final String newsTitle;
   final String image;
-
-  NewsCard({
+  final String description;
+  final List<String> phone;
+  final List<String> address;
+  OffersCard({
+    this.phone,
+    this.address,
     this.newsTitle,
     this.image,
+    this.description,
     Key key,
   }) : super(key: key);
 
@@ -722,8 +742,8 @@ class NewsCard extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding:
-                  EdgeInsets.only(right: 10, left: 10, bottom: 10, top: 10),
+              padding: EdgeInsets.only(
+                  right: 10.w, left: 10.w, bottom: 10.h, top: 10.h),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -741,7 +761,83 @@ class NewsCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "22-2-2021",
+                    "22-3-2021",
+                    style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w800),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(9), bottomRight: Radius.circular(9)),
+            child: Image(
+              image: NetworkImage(
+                image,
+              ),
+              width: 120.w,
+              height: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NewsCard extends StatelessWidget {
+  final String newsTitle;
+  final String image;
+  final String description;
+  NewsCard({
+    this.newsTitle,
+    this.image,
+    this.description,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 5, top: 5, right: 5, left: 5),
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 2,
+          color: Colors.red[700],
+        ),
+        borderRadius: BorderRadius.circular(9),
+        color: Colors.white,
+      ),
+      height: 100.h,
+      width: double.infinity,
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  right: 10.w, left: 10.w, bottom: 10.h, top: 10.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    child: Text(
+                      newsTitle,
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.yellow[900],
+                          fontWeight: FontWeight.w800),
+                      textAlign: TextAlign.right,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                  ),
+                  Text(
+                    "22-3-2021",
                     style: TextStyle(
                         fontSize: 13,
                         color: Colors.grey,

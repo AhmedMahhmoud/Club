@@ -5,12 +5,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Home.dart';
 
-class NewsScreen extends StatelessWidget {
+class OfferDetails extends StatelessWidget {
   final String image;
   final String title;
   final int index;
+  final List<String> phone;
+  final List<String> address;
   final String description;
-  NewsScreen({this.image, this.title, this.index, this.description});
+  OfferDetails(
+      {this.image,
+      this.title,
+      this.index,
+      this.description,
+      this.address,
+      this.phone});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +62,7 @@ class NewsScreen extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.all(3),
                         width: double.infinity,
-                        height: 250.h,
+                        height: 200.h,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: Hero(
@@ -76,32 +84,88 @@ class NewsScreen extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  "22-2-2021",
-                                  style: TextStyle(
-                                    fontSize: ScreenUtil()
-                                        .setSp(16, allowFontScalingSelf: true),
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ),
                               Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10.h),
                                 child: Text(
                                   description,
-                                  textAlign: TextAlign.right,
+                                  textDirection: TextDirection.rtl,
                                   style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(16,
-                                          allowFontScalingSelf: true),
-                                      fontWeight: FontWeight.bold),
+                                      color: Colors.red[700],
+                                      fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.right,
                                 ),
-                              ),
+                              )
                             ],
                           ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "التليفون",
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w800),
+                            ),
+                            Divider(
+                              color: Colors.black,
+                              thickness: 0.5,
+                              indent: 100.w,
+                              endIndent: 100.w,
+                            ),
+                            Container(
+                                height: 80.h,
+                                width: double.infinity,
+                                child: ListView.builder(
+                                  itemCount: phone.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 2),
+                                      child: Text(
+                                        phone[index],
+                                        style: TextStyle(
+                                            color: Colors.grey[800],
+                                            fontStyle: FontStyle.italic),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    );
+                                  },
+                                )),
+                            Text(
+                              "العنوان",
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w800),
+                            ),
+                            Divider(
+                              color: Colors.black,
+                              thickness: 0.5,
+                              indent: 100.w,
+                              endIndent: 100.w,
+                            ),
+                            Container(
+                              height: 80.h,
+                              width: double.infinity,
+                              child: ListView.builder(
+                                itemCount: address.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text(
+                                      address[index],
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          color: Colors.grey[800],
+                                          fontStyle: FontStyle.italic),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  );
+                                },
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
