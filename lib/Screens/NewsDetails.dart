@@ -2,7 +2,7 @@ import 'package:demo_club/Widgets/backButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:getwidget/getwidget.dart';
 import 'Home.dart';
 
 class NewsScreen extends StatelessWidget {
@@ -109,25 +109,22 @@ class NewsScreen extends StatelessWidget {
                 )),
             Positioned(
                 top: 150.h,
-                right: 10,
+                right: 10.w,
                 child: Container(
                   decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 5,
-                        color: Colors.red[800],
-                      ),
-                      shape: BoxShape.circle),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 4,
+                      color: Colors.red[700],
+                    ),
+                  ),
                   width: 60.w,
                   height: 60.h,
                   child: Hero(
                     tag: "ahly",
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image(
-                        image: NetworkImage(
-                            "https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515361_10542.jpg"),
-                      ),
-                    ),
+                    child: GFAvatar(
+                        backgroundImage:
+                            AssetImage("android/app/resources/logo.jpg")),
                   ),
                 )),
             BackkIcon(

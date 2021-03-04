@@ -68,19 +68,12 @@ class MoreMenuScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ContactUs(),
+                        builder: (context) => ContactUsScreen(),
                       )),
                   child: MoreRowItem(
                     title: "اتصل بنا",
                     iconData: FontAwesomeIcons.phone,
                   ),
-                ),
-                Divider(
-                  color: Colors.white,
-                ),
-                MoreRowItem(
-                  title: "وسائل التواصل",
-                  iconData: FontAwesomeIcons.facebook,
                 ),
                 Divider(
                   color: Colors.white,

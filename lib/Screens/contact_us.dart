@@ -1,15 +1,22 @@
+import 'package:demo_club/Models/ContactUsModel.dart';
+import 'package:demo_club/Models/UserModel.dart';
 import 'package:demo_club/Screens/Home.dart';
 import 'package:demo_club/Widgets/backButton.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:typicons_flutter/typicons_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import "dart:ui" as ui;
 import 'dart:math' as math;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ContactUs extends StatelessWidget {
+class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ContactUs contactUsData = Provider.of<ContactUsData>(context).contactUs;
+    var _socialMediaURLs = contactUsData.socialMediaURLS.values.toList();
+    var _socialMediaIcons = contactUsData.socialMediaURLS.keys.toList();
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
@@ -19,7 +26,9 @@ class ContactUs extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                UserHeader2(),
+                Provider.of<UserData>(context, listen: false).loggedIn
+                    ? UserHeader2()
+                    : Container(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
                   child: SingleChildScrollView(
@@ -144,6 +153,23 @@ class ContactUs extends StatelessWidget {
                                       onTap: () {
                                         launch("");
                                       }),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 40),
+                                    child: Container(
+                                      height: 60,
+                                      child: ListView.builder(
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: _socialMediaURLs.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return CircletTile(
+                                              link: _socialMediaURLs[index],
+                                              icon: _socialMediaIcons[index],
+                                            );
+                                          }),
+                                    ),
+                                  )
                                 ],
                               ),
                             ],
@@ -156,9 +182,9 @@ class ContactUs extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(child: BackkIcon(function: () {
+          BackkIcon(function: () {
             Navigator.pop(context);
-          }))
+          })
         ],
       ),
     );
@@ -291,6 +317,36 @@ class DetailsRow extends StatelessWidget {
                 ),
               ],
             )),
+      ),
+    );
+  }
+}
+
+class CircletTile extends StatelessWidget {
+  final IconData icon;
+  final String link;
+  final iconColor;
+  CircletTile({this.icon, this.link, this.iconColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        child: Container(
+          child: IconButton(
+            onPressed: () {
+              launch(link);
+            },
+            icon: Icon(
+              icon,
+              color: Color(0xFF3b3c40),
+            ),
+          ),
+        ),
       ),
     );
   }

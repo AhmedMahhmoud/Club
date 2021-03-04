@@ -1,10 +1,12 @@
 import 'package:demo_club/Models/FoodCategory.dart';
 import 'package:demo_club/Screens/OfferScren.dart';
 import 'package:demo_club/Screens/QrGateAccess.dart';
+import 'package:demo_club/Screens/RenewalScreen.dart';
 import 'package:demo_club/Screens/Restaurant.dart';
 
 import 'package:demo_club/Screens/SportsActivitiesDetails.dart';
 import 'package:demo_club/Screens/SportsScreen.dart';
+import 'package:demo_club/Screens/TripsScreen.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import '../Screens/Notifications.dart';
@@ -178,6 +180,7 @@ List<GridViewItemsWidg> gridList = [
   GridViewItemsWidg(
     iconData: "android/app/resources/payment.json",
     title: "تجديد الأشتراك",
+    function: RenewalScreen(),
   ),
   GridViewItemsWidg(
     iconData: "android/app/resources/qr.json",
@@ -192,6 +195,7 @@ List<GridViewItemsWidg> gridList = [
   GridViewItemsWidg(
     iconData: "android/app/resources/travel.json",
     title: "الرحلات",
+    function: TripScreen(),
   ),
   GridViewItemsWidg(
     iconData: "android/app/resources/gift.json",
@@ -267,4 +271,25 @@ List<NotificationsData> notificationList = [
     isSeen: 0,
     function: SportsScreen(),
   ),
+];
+////////////
+List<TripsCard> tripsList = [
+  TripsCard(
+    title: "الوادي الجديد",
+    duration: "من 2 الى 9 فبراير",
+    image:
+        "https://www.agazatclub.travel/uploads/onedaytrips/gallery/201713154354762.jpg",
+  ),
+  TripsCard(
+    title: "رحله نيليه  من القاهرة الى الاقصر واسوان ",
+    duration: "من 2 الى 9 يناير",
+    image:
+        "https://4.bp.blogspot.com/-Ja7vaIKIQxI/WBR_GSGmbnI/AAAAAAAAAGI/wkPdu6XFStk_wYKkwuBzZknyiKE8uX0pgCLcB/s400/Nile-Cruise-MS-Beauty.jpg",
+  ),
+  TripsCard(
+    title: "رحله اسكندرية يوم واحد",
+    duration: "من 2 الى 3 فبراير",
+    image:
+        "https://images.akhbarelyom.com//images/images/medium/20190811154515747.jpg",
+  )
 ];

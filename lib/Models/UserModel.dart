@@ -1,4 +1,5 @@
 import 'package:demo_club/Screens/Home.dart';
+import 'package:demo_club/Screens/Intro.dart';
 import 'package:demo_club/Screens/MyHomePage.dart';
 import 'package:demo_club/Widgets/AlertDialog.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,7 +56,7 @@ class UserData with ChangeNotifier {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Home(),
+            builder: (context) => PageIntro(user.name),
           ));
     } else {
       loggedIn = false;

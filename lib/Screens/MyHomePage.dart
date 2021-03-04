@@ -1,9 +1,8 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:demo_club/Models/UserModel.dart';
-import 'package:demo_club/Widgets/AlertDialog.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:circle_wheel_scroll/circle_wheel_scroll_view.dart';
+
 import 'package:flutter/services.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,15 +43,15 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                              top: 10,
+                              top: 10.h,
                               right: 90.w,
                               child: Column(
                                 children: [
                                   Hero(
                                     tag: "ahly",
                                     child: Image(
-                                      image: NetworkImage(
-                                        "https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515361_10542.jpg",
+                                      image: AssetImage(
+                                        "android/app/resources/logo.jpg",
                                       ),
                                       width: 200.w,
                                       height: 200.h,
@@ -60,20 +59,22 @@ class MyHomePage extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 5,
+                                    height: 5.h,
                                   ),
                                   Text(
                                     "تسجيل الدخول",
                                     style: TextStyle(
                                         color: Colors.yellow[800],
-                                        fontSize: 19,
+                                        fontSize: ScreenUtil().setSp(19,
+                                            allowFontScalingSelf: true),
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     "قم بالتسجيل عن طريق رقم العضوية",
                                     style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 15,
+                                        fontSize: ScreenUtil().setSp(15,
+                                            allowFontScalingSelf: true),
                                         fontWeight: FontWeight.bold),
                                   )
                                 ],
@@ -86,7 +87,7 @@ class MyHomePage extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topRight,
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 15),
+                        padding: EdgeInsets.only(right: 15.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -115,10 +116,10 @@ class MyHomePage extends StatelessWidget {
                                 },
                                 decoration: InputDecoration(
                                     contentPadding: EdgeInsets.only(
-                                        left: 15,
-                                        bottom: 11,
-                                        top: 11,
-                                        right: 15),
+                                        left: 15.w,
+                                        bottom: 11.h,
+                                        top: 11.h,
+                                        right: 15.w),
                                     border: InputBorder.none,
                                     hintText: "رقم العضوية"),
                                 textAlign: TextAlign.right,
@@ -147,7 +148,9 @@ class MyHomePage extends StatelessWidget {
                                   blockButton: true,
                                   color: Colors.red[800],
                                   fullWidthButton: true,
-                                  textStyle: TextStyle(fontSize: 18),
+                                  textStyle: TextStyle(
+                                      fontSize: ScreenUtil().setSp(18,
+                                          allowFontScalingSelf: true)),
                                 ),
                               ),
                             ),
@@ -170,7 +173,9 @@ class MyHomePage extends StatelessWidget {
                                       Text(
                                         "الدخول كضيف و تخطي التسجيل",
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 18),
+                                            color: Colors.white,
+                                            fontSize: ScreenUtil().setSp(18,
+                                                allowFontScalingSelf: true)),
                                       ),
                                       Container(
                                         width: 200.w,
