@@ -1,8 +1,7 @@
 import 'package:demo_club/Models/FoodCategory.dart';
 import 'package:demo_club/Models/UserModel.dart';
-import 'package:demo_club/Screens/MyHomePage.dart';
-import 'package:demo_club/Screens/OfferScren.dart';
-import 'package:demo_club/Screens/RestaurantAfterQr.dart';
+import 'package:demo_club/Screens/Intro.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,8 +9,9 @@ import 'package:provider/provider.dart';
 
 import 'Models/ContactUsModel.dart';
 import 'Models/RestaurantCart.dart';
-import 'Screens/CheckOutPage.dart';
-import 'Screens/TripsScreen.dart';
+
+import 'Screens/SplashScreen.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
                 theme: ThemeData(
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                 ),
-                home: MyHomePage(),
+                home: SplashScreen(),
               ),
             ));
   }

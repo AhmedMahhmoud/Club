@@ -50,7 +50,7 @@ class HomeAfterLogin extends StatelessWidget {
                               child: Image(
                                 width: double.infinity,
                                 height: 160.h,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                                 image: NetworkImage(newslist[index].image),
                               ),
                             ),

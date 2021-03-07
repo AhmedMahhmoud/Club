@@ -5,6 +5,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'SportsActivitiesDetails.dart';
+
 class HegAndOmraInformationScreen extends StatefulWidget {
   final String image1, title;
 
@@ -29,8 +31,7 @@ class _HegAndOmraInformationScreenState
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
-        body: SingleChildScrollView(
-            child: Stack(children: [
+        body: Stack(children: [
           Column(
             children: [
               UserHeader2(),
@@ -117,6 +118,11 @@ class _HegAndOmraInformationScreenState
 
                       HegOmraTripCard(
                           title: " المبلغ الأجمالى", displayWidget: '130'),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+
+                      PaymentButton()
                     ],
                   ),
                 ),
@@ -131,7 +137,7 @@ class _HegAndOmraInformationScreenState
             left: 10.w,
             child: Notofications(),
           ),
-        ])));
+        ]));
   }
 }
 

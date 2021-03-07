@@ -145,19 +145,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Positioned(
                   top: 60.h,
                   right: 130.w,
-                  child: Container(
-                    width: 130.w,
-                    height: 130.h,
-                    padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.white),
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            "https://scontent.fcai21-2.fna.fbcdn.net/v/t1.0-9/79803978_2206482966119329_7485546926507556864_n.jpg?_nc_cat=108&ccb=3&_nc_sid=174925&_nc_eui2=AeHHQqdJBe1wPzn5bN-SOqIRtDQyKomkcn20NDIqiaRyfe1QwPHwKm5pkbWX0A0KvHxDNuCahayPeOmbX7gWDbNG&_nc_ohc=-7xnIwcJ6JcAX8sKi4C&_nc_ht=scontent.fcai21-2.fna&oh=05115c7a72aa71660088d476e3121e95&oe=605DC125"),
-                        fit: BoxFit.cover,
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 130.w,
+                        height: 130.h,
+                        padding: EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.white),
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                "https://scontent.fcai21-2.fna.fbcdn.net/v/t1.0-9/79803978_2206482966119329_7485546926507556864_n.jpg?_nc_cat=108&ccb=3&_nc_sid=174925&_nc_eui2=AeHHQqdJBe1wPzn5bN-SOqIRtDQyKomkcn20NDIqiaRyfe1QwPHwKm5pkbWX0A0KvHxDNuCahayPeOmbX7gWDbNG&_nc_ohc=-7xnIwcJ6JcAX8sKi4C&_nc_ht=scontent.fcai21-2.fna&oh=05115c7a72aa71660088d476e3121e95&oe=605DC125"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: EdgeInsets.all(10),
+                          child: Center(
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   )),
               BackkIcon(
                 function: () {

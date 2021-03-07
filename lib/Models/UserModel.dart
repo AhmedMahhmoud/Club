@@ -56,7 +56,7 @@ class UserData with ChangeNotifier {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PageIntro(user.name),
+            builder: (context) => PageIntro(),
           ));
     } else {
       loggedIn = false;

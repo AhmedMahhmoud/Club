@@ -5,7 +5,7 @@ import 'package:demo_club/Widgets/CartFoodItemWidget.dart';
 import 'package:demo_club/Widgets/backButton.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

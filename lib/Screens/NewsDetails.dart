@@ -60,7 +60,7 @@ class NewsScreen extends StatelessWidget {
                           child: Hero(
                             tag: index,
                             child: Image(
-                              fit: BoxFit.fitWidth,
+                              fit: BoxFit.fill,
                               image: NetworkImage(
                                 image,
                               ),

@@ -3,26 +3,39 @@ import 'package:demo_club/Models/UserModel.dart';
 import 'package:demo_club/Screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:getwidget/components/animation/gf_animation.dart';
+import 'package:getwidget/types/gf_animation_type.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class PageIntro extends StatefulWidget {
-  final String username;
-  PageIntro(this.username);
+  PageIntro();
   @override
   _PageIntroState createState() => _PageIntroState();
 }
 
-class _PageIntroState extends State<PageIntro> {
+AnimationController controller2;
+Animation<double> animation;
+
+class _PageIntroState extends State<PageIntro> with TickerProviderStateMixin {
   int _currentIndex = 0;
 
   PageController _controller = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    print('i am here');
+  }
 
   _onPageChange(int indx) {
     setState(() {
       _currentIndex = indx;
     });
+    controller2 =
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    animation = new CurvedAnimation(parent: controller2, curve: Curves.linear);
   }
 
   @override
@@ -91,7 +104,7 @@ class _PageIntroState extends State<PageIntro> {
                             margin: EdgeInsets.only(bottom: 29),
                             duration: Duration(milliseconds: 100),
                             height: 12.h,
-                            width: index == _currentIndex ? 30 : 20,
+                            width: index == _currentIndex ? 30.w : 20.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: index == _currentIndex
@@ -209,61 +222,65 @@ class SliderPage extends StatelessWidget {
           SizedBox(
             height: index == 0 ? 30.h : 20.h,
           ),
-          Container(
-            height: 200.h,
-            child: Card(
-              elevation: 6,
-              shadowColor: Colors.red[800],
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 80.h, vertical: 40),
-                child: index == 0
-                    ? Column(
-                        children: [
-                          Text(
-                            desc,
-                            style: TextStyle(
-                                height: 1.4,
-                                fontWeight: FontWeight.w800,
-                                fontSize: ScreenUtil()
-                                    .setSp(17, allowFontScalingSelf: true),
-                                letterSpacing: 0.9,
-                                color: Colors.red[800]),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          ScaleAnimatedTextKit(
-                            repeatForever: true,
-                            duration: Duration(milliseconds: 2500),
-                            onTap: () {
-                              print("Tap Event");
-                            },
-                            text: [
-                              "تجديد اشتراك العضوية",
-                              "متابعة الأنشطة الرياضية",
-                              "تصريح دخول النادى ",
-                              "متابعة الرحلات",
-                              "متابعة العروض المتاحة"
-                            ],
-                            textStyle: TextStyle(
-                              fontSize: 17.0,
+          GFAnimation(
+            scaleAnimation: animation,
+            controller: controller2,
+            type: GFAnimationType.scaleTransition,
+            child: Container(
+              height: 220.h,
+              child: Card(
+                elevation: 6,
+                shadowColor: Colors.red[800],
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 80.h, vertical: 40),
+                  child: index == 0
+                      ? Column(
+                          children: [
+                            Text(
+                              desc,
+                              style: TextStyle(
+                                  height: 1.4,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: ScreenUtil()
+                                      .setSp(17, allowFontScalingSelf: true),
+                                  letterSpacing: 0.4,
+                                  color: Colors.red[800]),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.start,
-                          )
-                        ],
-                      )
-                    : Text(
-                        desc,
-                        style: TextStyle(
-                            height: 1.4,
-                            fontWeight: FontWeight.w800,
-                            fontSize: ScreenUtil()
-                                .setSp(17, allowFontScalingSelf: true),
-                            letterSpacing: 0.9,
-                            color: Colors.red[800]),
-                        textAlign: TextAlign.center,
-                      ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            ScaleAnimatedTextKit(
+                              repeatForever: true,
+                              duration: Duration(milliseconds: 2500),
+                              onTap: () {
+                                print("Tap Event");
+                              },
+                              text: [
+                                "تجديد اشتراك العضوية",
+                                "متابعة الأنشطة الرياضية",
+                                "تصريح دخول النادى ",
+                                "متابعة الرحلات",
+                                "متابعة العروض المتاحة"
+                              ],
+                              textStyle: TextStyle(
+                                fontSize: 17.0,
+                              ),
+                              textAlign: TextAlign.start,
+                            )
+                          ],
+                        )
+                      : Text(
+                          desc,
+                          style: TextStyle(
+                              height: 1.2,
+                              fontWeight: FontWeight.w800,
+                              fontSize: ScreenUtil()
+                                  .setSp(17, allowFontScalingSelf: true),
+                              color: Colors.red[800]),
+                          textAlign: TextAlign.center,
+                        ),
+                ),
               ),
             ),
           ),

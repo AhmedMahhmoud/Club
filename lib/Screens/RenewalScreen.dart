@@ -46,7 +46,9 @@ class RenewalScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => PaymentScreen(),
+                              builder: (context) => PaymentScreen(
+                                paymentButton: "اتمام الدفع",
+                              ),
                             ));
                       },
                       text: "متابعة",

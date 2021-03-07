@@ -1,4 +1,4 @@
-import 'package:demo_club/Screens/RestaurantAfterQr.dart';
+
 import 'package:demo_club/Widgets/RestaurantBottomSheet.dart';
 import 'package:flutter/cupertino.dart';
 

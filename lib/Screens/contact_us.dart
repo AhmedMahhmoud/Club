@@ -11,7 +11,7 @@ import "dart:ui" as ui;
 import 'dart:math' as math;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ContactUsScreen extends StatelessWidget {
+class ContactUsSc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ContactUs contactUsData = Provider.of<ContactUsData>(context).contactUs;

@@ -184,22 +184,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                           title: newslist[index].newsTitle,
                                         ),
                                       )
-                                    : InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    NewsScreen(
-                                                  index: index,
-                                                  image:
-                                                      sportsNews[index].image,
-                                                  title: sportsNews[index]
-                                                      .newsTitle,
-                                                ),
-                                              ));
-                                        },
-                                        child: sportsNews[index]);
+                                    : AnimatedPage(
+                                        card: sportsNews[index],
+                                        secondScreen: NewsScreen(
+                                          index: index,
+                                          description:
+                                              sportsNews[index].description,
+                                          image: sportsNews[index].image,
+                                          title: sportsNews[index].newsTitle,
+                                        ),
+                                      );
                               },
                               itemCount: categoryIndex == 0
                                   ? newslist.length
@@ -418,6 +412,35 @@ class GridViewItemsWidg extends StatelessWidget {
         ));
   }
 }
+
+// class OfflineHeader extends StatelessWidget {
+//   const OfflineHeader({
+//     Key key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ClipPath(
+//       clipper: WaveClipperOne(
+//         flip: true,
+//       ),
+//       child: Container(
+//         color: Colors.red[900],
+//         height: 110.h,
+//         width: double.infinity,
+//         child: Container(
+//           decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(color: Colors.w)),
+//           child: Image(
+//             width: 60.w,
+//             height: 60.h,
+//             image: NetworkImage(
+//                 "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png"),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class Notofications extends StatelessWidget {
   const Notofications({

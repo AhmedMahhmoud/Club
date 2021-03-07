@@ -198,26 +198,7 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        color: Colors.red,
-                        height: 45.h,
-                        child: GFButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PaymentScreen(),
-                                ));
-                          },
-                          text: "اتمام الحجز",
-                          size: GFSize.LARGE,
-                          shape: GFButtonShape.square,
-                          blockButton: true,
-                          color: Colors.red[800],
-                          fullWidthButton: true,
-                          textStyle: TextStyle(fontSize: 18),
-                        ),
-                      ),
+                      child: PaymentButton(),
                     ),
                   ],
                 ))
@@ -354,6 +335,38 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
             },
           )
         ],
+      ),
+    );
+  }
+}
+
+class PaymentButton extends StatelessWidget {
+  const PaymentButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.red,
+      height: 45.h,
+      child: GFButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PaymentScreen(
+                  paymentButton: "اتمام الحجز",
+                ),
+              ));
+        },
+        text: "اتمام الحجز",
+        size: GFSize.LARGE,
+        shape: GFButtonShape.square,
+        blockButton: true,
+        color: Colors.red[800],
+        fullWidthButton: true,
+        textStyle: TextStyle(fontSize: 18),
       ),
     );
   }
