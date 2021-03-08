@@ -80,16 +80,16 @@ class _SplashScreenState extends State<SplashScreen>
                     width: 150,
                   ),
                 ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 500,
-                      child: Lottie.asset("android/app/resources/fire.json",
-                          fit: BoxFit.fitWidth),
-                    ),
-                  ),
-                ),
+                // Center(
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(right: 8.0),
+                //     child: Container(
+                //       width: 500,
+                //       child: Lottie.asset("android/app/resources/fire.json",
+                //           fit: BoxFit.fitWidth),
+                //     ),
+                //   ),
+                // ),
                 Positioned(
                   top: 0,
                   left: 0,

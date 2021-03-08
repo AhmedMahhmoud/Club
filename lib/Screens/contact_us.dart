@@ -18,7 +18,7 @@ class ContactUsSc extends StatelessWidget {
     var _socialMediaURLs = contactUsData.socialMediaURLS.values.toList();
     var _socialMediaIcons = contactUsData.socialMediaURLS.keys.toList();
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           Container(

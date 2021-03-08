@@ -1,4 +1,5 @@
 import 'package:demo_club/Screens/Home.dart';
+import 'package:demo_club/Screens/TripsHegOmra.dart';
 import 'package:demo_club/Widgets/NewsTilesList.dart';
 import 'package:demo_club/Widgets/backButton.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +9,15 @@ import 'package:getwidget/types/gf_animation_type.dart';
 
 import 'TripDetails.dart';
 
-class TripScreen extends StatefulWidget {
+class ClubTrips extends StatefulWidget {
   @override
-  _TripScreenState createState() => _TripScreenState();
+  _ClubTripsState createState() => _ClubTripsState();
 }
 
 AnimationController controller;
 Animation<double> animation;
 
-class _TripScreenState extends State<TripScreen>
+class _ClubTripsState extends State<ClubTrips>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
@@ -99,13 +100,14 @@ class TripsCard extends StatelessWidget {
       children: [
         InkWell(
           onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HegAndOmraInformationScreen(
-                  title: title,
-                  image1: image,
-                ),
-              )),
+            context,
+            MaterialPageRoute(
+              builder: (context) => HegAndOmraInformationScreen(
+                title: title,
+                image1: image,
+              ),
+            ),
+          ),
           child: Container(
             height: 240.h,
             width: double.infinity,
@@ -137,9 +139,14 @@ class TripsCard extends StatelessWidget {
                   Text(
                     title,
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).backgroundColor),
                   ),
-                  Text(duration, style: TextStyle(fontWeight: FontWeight.w500)),
+                  Text(duration,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).backgroundColor)),
                 ],
               ),
             ),

@@ -1,5 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:demo_club/Models/UserModel.dart';
+
 import 'package:demo_club/Screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,7 +7,6 @@ import 'package:getwidget/components/animation/gf_animation.dart';
 import 'package:getwidget/types/gf_animation_type.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class PageIntro extends StatefulWidget {
   PageIntro();
@@ -26,7 +25,6 @@ class _PageIntroState extends State<PageIntro> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    print('i am here');
   }
 
   _onPageChange(int indx) {
@@ -109,7 +107,7 @@ class _PageIntroState extends State<PageIntro> with TickerProviderStateMixin {
                               borderRadius: BorderRadius.circular(5),
                               color: index == _currentIndex
                                   ? Colors.white
-                                  : Colors.red[800],
+                                  : Theme.of(context).primaryColor,
                             ),
                           );
                         }),
@@ -124,7 +122,7 @@ class _PageIntroState extends State<PageIntro> with TickerProviderStateMixin {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.red[800],
+                            color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20)),
@@ -193,7 +191,8 @@ class SliderPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.red[800]),
+                border:
+                    Border.all(width: 2, color: Theme.of(context).primaryColor),
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage("android/app/resources/logo.jpg"),
@@ -229,8 +228,9 @@ class SliderPage extends StatelessWidget {
             child: Container(
               height: 220.h,
               child: Card(
+                color: Theme.of(context).highlightColor,
                 elevation: 6,
-                shadowColor: Colors.red[800],
+                shadowColor: Theme.of(context).primaryColor,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 80.h, vertical: 40),
                   child: index == 0
@@ -244,7 +244,7 @@ class SliderPage extends StatelessWidget {
                                   fontSize: ScreenUtil()
                                       .setSp(17, allowFontScalingSelf: true),
                                   letterSpacing: 0.4,
-                                  color: Colors.red[800]),
+                                  color: Theme.of(context).primaryColor),
                               textAlign: TextAlign.center,
                             ),
                             SizedBox(
@@ -264,8 +264,8 @@ class SliderPage extends StatelessWidget {
                                 "متابعة العروض المتاحة"
                               ],
                               textStyle: TextStyle(
-                                fontSize: 17.0,
-                              ),
+                                  fontSize: 17.0,
+                                  color: Theme.of(context).backgroundColor),
                               textAlign: TextAlign.start,
                             )
                           ],
@@ -277,7 +277,7 @@ class SliderPage extends StatelessWidget {
                               fontWeight: FontWeight.w800,
                               fontSize: ScreenUtil()
                                   .setSp(17, allowFontScalingSelf: true),
-                              color: Colors.red[800]),
+                              color: Theme.of(context).primaryColor),
                           textAlign: TextAlign.center,
                         ),
                 ),

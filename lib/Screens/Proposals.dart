@@ -72,7 +72,7 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Form(
           key: _formKey,
           child: SingleChildScrollView(

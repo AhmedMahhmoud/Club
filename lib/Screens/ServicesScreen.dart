@@ -35,10 +35,10 @@ class _ServicesScreenState extends State<ServicesScreen>
           child: Column(
             children: [
               UserHeader2(),
-              SizedBox(height: 10),
+              SizedBox(height: 10.h),
               Expanded(
                   child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: GFAnimation(
                   scaleAnimation: animation,
                   controller: controller,
@@ -49,12 +49,13 @@ class _ServicesScreenState extends State<ServicesScreen>
                       child: GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             childAspectRatio: 0.95,
-                            crossAxisSpacing: 15,
-                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 15.w,
+                            mainAxisSpacing: 10.w,
                             crossAxisCount: 2),
                         itemBuilder: (context, index) {
                           return AnimatedPage(
                             card: Card(
+                                color: Theme.of(context).highlightColor,
                                 shadowColor: Colors.orange,
                                 elevation: 3,
                                 shape: RoundedRectangleBorder(

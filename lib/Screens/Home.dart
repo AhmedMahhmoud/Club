@@ -63,6 +63,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return selectedIndex == 1
         ? Scaffold(
             bottomNavigationBar: BottomAppBar(
+              color: Theme.of(context).highlightColor,
               shape: const CustomNotchedRectangle(),
               child: Container(
                   padding: EdgeInsets.only(top: 10.h, left: 10.w),
@@ -84,8 +85,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                   iconData: mylist[index].iconData,
                                   text: mylist[index].text,
                                   colorTex: selectedIndex == index
-                                      ? Colors.orange[700]
-                                      : Colors.red[700],
+                                      ? Theme.of(context).accentColor
+                                      : Theme.of(context).primaryColor,
                                   fontSize: selectedIndex == index
                                       ? ScreenUtil()
                                           .setSp(18, allowFontScalingSelf: true)
@@ -108,10 +109,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   selectedIndex = 1;
                 });
               },
-              backgroundColor:
-                  selectedIndex == 1 ? Colors.orange[700] : Colors.red[800],
+              backgroundColor: selectedIndex == 1
+                  ? Theme.of(context).accentColor
+                  : Theme.of(context).primaryColor,
               tooltip: 'Home',
-              child: Icon(Icons.home),
+              child: Icon(
+                Icons.home,
+                color: Theme.of(context).highlightColor,
+              ),
             ),
             backgroundColor: Colors.black,
             body: Stack(
@@ -149,8 +154,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     child: NewsHeaders(
                                       headName: headerList[ind].headName,
                                       colorHead: categoryIndex == ind
-                                          ? Colors.orange[700]
-                                          : Colors.red[900],
+                                          ? Theme.of(context).accentColor
+                                          : Theme.of(context).primaryColor,
                                       size: categoryIndex == ind
                                           ? ScreenUtil().setSp(24,
                                               allowFontScalingSelf: true)
@@ -218,6 +223,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         : selectedIndex == 2
             ? Scaffold(
                 bottomNavigationBar: BottomAppBar(
+                  color: Theme.of(context).highlightColor,
                   shape: const CustomNotchedRectangle(),
                   child: Container(
                       padding: EdgeInsets.only(top: 10.h, left: 10.w),
@@ -239,8 +245,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       iconData: mylist[index].iconData,
                                       text: mylist[index].text,
                                       colorTex: selectedIndex == index
-                                          ? Colors.orange[700]
-                                          : Colors.red[700],
+                                          ? Theme.of(context).accentColor
+                                          : Theme.of(context).primaryColor,
                                       fontSize: selectedIndex == index
                                           ? ScreenUtil().setSp(18,
                                               allowFontScalingSelf: true)
@@ -263,10 +269,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       selectedIndex = 1;
                     });
                   },
-                  backgroundColor:
-                      selectedIndex == 1 ? Colors.orange[700] : Colors.red[800],
+                  backgroundColor: selectedIndex == 1
+                      ? Theme.of(context).accentColor
+                      : Theme.of(context).primaryColor,
                   tooltip: 'Home',
-                  child: Icon(Icons.home),
+                  child: Icon(Icons.home, color: Colors.white),
                 ),
                 backgroundColor: Colors.black,
                 body: loggedUser
@@ -287,6 +294,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               )
             : Scaffold(
                 bottomNavigationBar: BottomAppBar(
+                  color: Theme.of(context).highlightColor,
                   shape: const CustomNotchedRectangle(),
                   child: Container(
                       padding: EdgeInsets.only(top: 10.h, left: 10.w),
@@ -308,8 +316,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                       iconData: mylist[index].iconData,
                                       text: mylist[index].text,
                                       colorTex: selectedIndex == index
-                                          ? Colors.orange[700]
-                                          : Colors.red[700],
+                                          ? Theme.of(context).accentColor
+                                          : Theme.of(context).primaryColor,
                                       fontSize: selectedIndex == index
                                           ? ScreenUtil().setSp(18,
                                               allowFontScalingSelf: true)
@@ -332,10 +340,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       selectedIndex = 1;
                     });
                   },
-                  backgroundColor:
-                      selectedIndex == 1 ? Colors.orange[700] : Colors.red[800],
+                  backgroundColor: selectedIndex == 1
+                      ? Theme.of(context).accentColor
+                      : Theme.of(context).primaryColor,
                   tooltip: 'Home',
-                  child: Icon(Icons.home),
+                  child: Icon(Icons.home, color: Colors.white),
                 ),
                 backgroundColor: Colors.black,
                 body: MoreMenuScreen());
@@ -355,7 +364,7 @@ class UserHeader2 extends StatelessWidget {
       ),
       child: Container(
         padding: EdgeInsets.all(5),
-        color: Colors.red[900],
+        color: Theme.of(context).primaryColor,
         height: 110.h,
         child: UserHeader(),
       ),
@@ -402,6 +411,7 @@ class GridViewItemsWidg extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
+                      color: Theme.of(context).backgroundColor,
                       fontWeight: FontWeight.w800,
                       fontSize:
                           ScreenUtil().setSp(17, allowFontScalingSelf: true)),
@@ -456,7 +466,10 @@ class Notofications extends StatelessWidget {
         height: 80.h,
         decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(width: 4, color: Colors.red[900])),
+            border: Border.all(
+              width: 4,
+              color: Theme.of(context).primaryColor,
+            )),
         child: GFAvatar(
           backgroundColor: Colors.white,
           radius: 20.w,
@@ -517,7 +530,7 @@ class UserHeader extends StatelessWidget {
                         builder: (context) => NotificationsScreen(),
                       )),
                   child: GFBadge(
-                    color: Colors.red[700],
+                    color: Colors.red[800],
                     child: Text(notificationList.length.toString()),
                   ),
                 ),
@@ -566,7 +579,7 @@ class ClipperWidget extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                        color: Colors.yellow[800],
+                        color: Theme.of(context).accentColor,
                         fontSize:
                             ScreenUtil().setSp(24, allowFontScalingSelf: true),
                         fontWeight: FontWeight.bold),
@@ -668,7 +681,7 @@ class OffersCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
-          color: Colors.red[700],
+          color: Theme.of(context).primaryColor,
         ),
         borderRadius: BorderRadius.circular(9),
         color: Colors.white,
@@ -691,7 +704,7 @@ class OffersCard extends StatelessWidget {
                       style: TextStyle(
                           fontSize: ScreenUtil()
                               .setSp(16, allowFontScalingSelf: true),
-                          color: Colors.yellow[900],
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w800),
                       textAlign: TextAlign.right,
                       overflow: TextOverflow.ellipsis,
@@ -703,7 +716,7 @@ class OffersCard extends StatelessWidget {
                     style: TextStyle(
                         fontSize:
                             ScreenUtil().setSp(13, allowFontScalingSelf: true),
-                        color: Colors.grey,
+                        color: Theme.of(context).hintColor,
                         fontWeight: FontWeight.w800),
                   )
                 ],
@@ -746,7 +759,7 @@ class NewsCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
-          color: Colors.red[700],
+          color: Theme.of(context).primaryColor,
         ),
         borderRadius: BorderRadius.circular(9),
         color: Colors.white,
@@ -781,7 +794,7 @@ class NewsCard extends StatelessWidget {
                     style: TextStyle(
                         fontSize:
                             ScreenUtil().setSp(13, allowFontScalingSelf: true),
-                        color: Colors.grey,
+                        color: Theme.of(context).hintColor,
                         fontWeight: FontWeight.w800),
                   )
                 ],

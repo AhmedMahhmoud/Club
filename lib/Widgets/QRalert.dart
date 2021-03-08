@@ -14,6 +14,7 @@ class QrAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+        backgroundColor: Theme.of(context).highlightColor,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0)), //this right here
         child: Stack(
@@ -70,7 +71,10 @@ class QrAlert extends StatelessWidget {
                 child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
-                child: Icon(Icons.close),
+                child: Icon(
+                  Icons.close,
+                  color: Colors.grey,
+                ),
                 onTap: () => Navigator.pop(context),
               ),
             ))

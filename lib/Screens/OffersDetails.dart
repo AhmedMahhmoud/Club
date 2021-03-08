@@ -107,7 +107,9 @@ class OfferDetails extends StatelessWidget {
                             Text(
                               "التليفون",
                               style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.w800),
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w800,
+                                  color: Theme.of(context).backgroundColor),
                             ),
                             Divider(
                               color: Colors.black,
@@ -137,7 +139,9 @@ class OfferDetails extends StatelessWidget {
                             Text(
                               "العنوان",
                               style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.w800),
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w800,
+                                  color: Theme.of(context).backgroundColor),
                             ),
                             Divider(
                               color: Colors.black,

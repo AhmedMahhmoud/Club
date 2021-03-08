@@ -109,7 +109,7 @@ class SportsActivitiesCard extends StatelessWidget {
                       BorderRadius.only(bottomLeft: Radius.circular(15)),
                   color: Colors.white,
                   border: Border.all(width: 1, color: Colors.red[700])),
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15),
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -123,10 +123,15 @@ class SportsActivitiesCard extends StatelessWidget {
                         )),
                     child: Column(
                       children: [
-                        FaIcon(FontAwesomeIcons.calendarAlt),
+                        FaIcon(
+                          FontAwesomeIcons.calendarAlt,
+                          color: Theme.of(context).backgroundColor,
+                        ),
                         Text(
                           "الحجز",
-                          style: TextStyle(fontWeight: FontWeight.w800),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              color: Theme.of(context).backgroundColor),
                         )
                       ],
                     ),
@@ -145,10 +150,15 @@ class SportsActivitiesCard extends StatelessWidget {
                         )),
                     child: Column(
                       children: [
-                        FaIcon(FontAwesomeIcons.info),
+                        FaIcon(
+                          FontAwesomeIcons.info,
+                          color: Theme.of(context).backgroundColor,
+                        ),
                         Text(
                           "الأكاديمية",
-                          style: TextStyle(fontWeight: FontWeight.w800),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              color: Theme.of(context).backgroundColor),
                         )
                       ],
                     ),

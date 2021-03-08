@@ -95,6 +95,7 @@ class NewsScreen extends StatelessWidget {
                                   description,
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
+                                      color: Theme.of(context).backgroundColor,
                                       fontSize: ScreenUtil().setSp(16,
                                           allowFontScalingSelf: true),
                                       fontWeight: FontWeight.bold),

@@ -349,7 +349,7 @@ class PaymentButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.red,
-      height: 45.h,
+      height: 45.h, 
       child: GFButton(
         onPressed: () {
           Navigator.push(
@@ -386,6 +386,7 @@ class PlaceLocation extends StatelessWidget {
     return GestureDetector(
       onTap: function,
       child: Card(
+        color: Theme.of(context).highlightColor,
         elevation: 5,
         child: Container(
           height: 50.h,

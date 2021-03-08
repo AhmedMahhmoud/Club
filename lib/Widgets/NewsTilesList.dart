@@ -6,7 +6,9 @@ import 'package:demo_club/Screens/Restaurant.dart';
 
 import 'package:demo_club/Screens/SportsActivitiesDetails.dart';
 import 'package:demo_club/Screens/SportsScreen.dart';
-import 'package:demo_club/Screens/TripsScreen.dart';
+import 'package:demo_club/Screens/Trips.dart';
+import 'package:demo_club/Screens/TripsClub.dart';
+import 'package:demo_club/Screens/TripsHegOmra.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import '../Screens/Notifications.dart';
@@ -206,7 +208,7 @@ List<GridViewItemsWidg> gridList = [
   GridViewItemsWidg(
     iconData: "android/app/resources/travel.json",
     title: "الرحلات",
-    function: TripScreen(),
+    function: Trips(),
   ),
   GridViewItemsWidg(
     iconData: "android/app/resources/gift.json",
@@ -303,4 +305,34 @@ List<TripsCard> tripsList = [
     image:
         "https://images.akhbarelyom.com//images/images/medium/20190811154515747.jpg",
   )
+];
+////////////
+List<MyHegCard> travelList = [
+  MyHegCard(
+    tripImage:
+        "https://fayoumtour.com/wp-content/uploads/2019/12/%D8%A7%D9%84%D9%81%D9%8A%D9%88%D9%85.jpg",
+    tripName: "رحلات النادى",
+    function: ClubTrips(),
+  ),
+  MyHegCard(
+    tripImage:
+        "https://cdn1-m.alittihad.ae/store/archive/image/2020/7/24/1ef0d68b-d110-4d43-bb21-1e7b5373cb86.jpg?v=6",
+    tripName: "الحج و العمرة",
+    function: HegOmraScreen(),
+  ),
+];
+//////////////////
+List<HegScreenCards> hegScreenList = [
+  HegScreenCards(
+    tripDuration: "11",
+    tripImage:
+        "https://www.steigenberger.com/cache/images/hyscai71_shr_el_tahr_1eb01941f5a3b62425ad59c59-1-1-1-1.jpg",
+    tripName: "عمرة",
+  ),
+  HegScreenCards(
+    tripDuration: "3",
+    tripImage:
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/ab/e0/15/exterior.jpg?w=900&h=-1&s=1",
+    tripName: "حج",
+  ),
 ];

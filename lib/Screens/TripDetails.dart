@@ -29,6 +29,7 @@ class _HegAndOmraInformationScreenState
     extends State<HegAndOmraInformationScreen> {
   @override
   Widget build(BuildContext context) {
+    TextStyle textStyle = TextStyle(color: Theme.of(context).backgroundColor);
     return Scaffold(
         backgroundColor: Colors.black,
         body: Stack(children: [
@@ -88,14 +89,20 @@ class _HegAndOmraInformationScreenState
                               textDirection: TextDirection.rtl,
                               child: Text(
                                 "9 فبراير",
+                                style: textStyle,
                               ),
                             ),
-                            Text("الى"),
+                            Text("الى", style: textStyle),
                             Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Text("8 فبراير")),
+                              textDirection: TextDirection.rtl,
+                              child: Text(
+                                "8 فبراير",
+                                style: textStyle,
+                              ),
+                            ),
                             Text(
                               "من ",
+                              style: textStyle,
                             ),
                           ],
                         ),
@@ -153,6 +160,7 @@ class HegOmraTripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Theme.of(context).highlightColor,
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -178,14 +186,14 @@ class HegOmraTripCard extends StatelessWidget {
                 ),
               ),
               Divider(
-                thickness: 2,
+                thickness: 1,
                 height: 2,
+                color: Theme.of(context).hintColor,
               ),
               Directionality(
                 textDirection: ui.TextDirection.rtl,
-                child: Text(
-                  displayWidget,
-                ),
+                child: Text(displayWidget,
+                    style: TextStyle(color: Theme.of(context).backgroundColor)),
               )
             ],
           ),
@@ -207,6 +215,7 @@ class HegOmraTripCardDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -231,9 +240,7 @@ class HegOmraTripCardDate extends StatelessWidget {
                 ),
               ),
               Divider(
-                thickness: 2,
-                height: 2,
-              ),
+                  thickness: 1, height: 2, color: Theme.of(context).hintColor),
               displayWidget
             ],
           ),

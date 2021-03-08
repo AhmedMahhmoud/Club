@@ -107,6 +107,8 @@ class MyHomePage extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 0.9,
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
+                                style: TextStyle(
+                                    color: Theme.of(context).backgroundColor),
                                 controller: txtController,
                                 validator: (value) {
                                   if (value.isEmpty) {

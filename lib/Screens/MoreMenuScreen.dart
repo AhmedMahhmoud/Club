@@ -6,6 +6,7 @@ import 'package:demo_club/Screens/Proposals.dart';
 import 'package:demo_club/Screens/UserProfile.dart';
 import 'package:demo_club/Screens/contact_us.dart';
 import 'package:demo_club/Widgets/AlertDialog.dart';
+import 'package:demo_club/Widgets/ThemeAlert.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,7 +22,7 @@ class MoreMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var loggedUser = Provider.of<UserData>(context, listen: false).loggedIn;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           Container(
@@ -114,6 +115,21 @@ class MoreMenuScreen extends StatelessWidget {
                     child: MoreRowItem(
                       title: "الشكاوى و المقترحات",
                       iconData: FontAwesomeIcons.envelope,
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.white,
+                  ),
+                  InkWell(
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (context) {
+                        return ThemeAlert();
+                      },
+                    ),
+                    child: MoreRowItem(
+                      title: "تغير الخلفية",
+                      iconData: FontAwesomeIcons.moon,
                     ),
                   ),
                   Divider(
@@ -230,7 +246,7 @@ class CategoryNameRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(5),
-      color: Colors.white.withOpacity(0.3),
+      color: Theme.of(context).hintColor.withOpacity(0.9),
       alignment: Alignment.topRight,
       width: double.infinity,
       height: 40.h,

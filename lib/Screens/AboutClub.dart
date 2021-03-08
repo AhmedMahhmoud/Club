@@ -63,7 +63,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
     var loggedUser = Provider.of<UserData>(context, listen: false).loggedIn;
     return GestureDetector(
         child: Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: Theme.of(context).backgroundColor,
             body: Stack(
               children: [
                 Container(

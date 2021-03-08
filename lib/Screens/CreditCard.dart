@@ -32,6 +32,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
@@ -62,6 +63,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     child: GFButton(
                       onPressed: () {
                         Dialog errorDialog = Dialog(
+                          backgroundColor: Theme.of(context).highlightColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   12.0)), //this right here

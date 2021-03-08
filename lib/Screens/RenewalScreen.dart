@@ -89,7 +89,7 @@ class RenewDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFede8e8),
+        backgroundColor: Theme.of(context).backgroundColor,
         body: PaymentDetailsCard(
           content: Content(),
         ));
@@ -114,251 +114,277 @@ var healthcareRegisterBool = false;
 class _ContentState extends State<Content> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(width: 1, color: Colors.black)),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Container(
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                    color: Colors.red[800],
-                    borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Text(
-                      "تجديد عضوية",
-                      style: kHeadersTextStyle,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(width: 1, color: Colors.black)),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: Container(
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                      color: Colors.red[800],
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        "تجديد عضوية",
+                        style: kHeadersTextStyle,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      child: Row(
+              Container(
+                padding: EdgeInsets.all(15),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                child: Text(
+                              syndicateRegesteriationCost.toString(),
+                              style: kTextStyle,
+                            )),
+                            Text(
+                              "اشتراك عضوية النادى ",
+                              textAlign: TextAlign.right,
+                              style: kSubHeadersTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        thickness: 1,
+                        color: Theme.of(context).hintColor,
+                      ),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                               child: Text(
-                            syndicateRegesteriationCost.toString(),
+                            syndicateInternalCost.toString(),
                             style: kTextStyle,
                           )),
                           Text(
-                            "اشتراك عضوية النادى ",
+                            "مصاريف ادارية ",
                             textAlign: TextAlign.right,
                             style: kSubHeadersTextStyle,
                           ),
                         ],
                       ),
-                    ),
-                    Divider(
-                      thickness: 1,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            child: Text(
-                          syndicateInternalCost.toString(),
-                          style: kTextStyle,
-                        )),
-                        Text(
-                          "مصاريف ادارية ",
-                          textAlign: TextAlign.right,
-                          style: kSubHeadersTextStyle,
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 1,
-                    ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.moneyBill,
-                                color: Colors.red[800],
-                                size: 18,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "تجديد الأشتراك ",
-                                  textAlign: TextAlign.right,
-                                  style: kSubHeadersTextStyle,
-                                ),
-                              ),
-                              Checkbox(
-                                activeColor: Colors.red[800],
-                                onChanged: (value) {
-                                  setState(() {
-                                    healthcareRegisterBool = value;
-                                    if (value == false) {
-                                      healthcareRegisterCost = 0;
-                                    } else {
-                                      healthcareRegisterCost = 60;
-                                    }
-                                  });
-                                },
-                                value: healthcareRegisterBool,
-                              ),
-                            ],
-                          ),
-                        ],
+                      Divider(
+                        thickness: 1,
+                        color: Theme.of(context).hintColor,
                       ),
-                    ),
-                    !healthcareRegisterBool
-                        ? Divider(
-                            thickness: 1,
-                          )
-                        : Padding(
-                            padding: EdgeInsets.only(
-                              left: 15.w,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                        child: Text(
-                                      mainSyndicateCost.toString(),
-                                      style: kTextStyle,
-                                    )),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "اشتراك العضو الرئيسي",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        Checkbox(
-                                          activeColor: Colors.red[800],
-                                          onChanged: (value) {},
-                                          value: healthcareRegisterBool,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                //////////
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                        child: Text(
-                                      140.toString(),
-                                      style: kTextStyle,
-                                    )),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "اشتراك الزوجة",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        Checkbox(
-                                          activeColor: Colors.red[800],
-                                          onChanged: (value) {
-                                            setState(() {
-                                              wifeBool = value;
-                                            });
-                                            if (value == false) {
-                                              wifeSyndicateCost = 0;
-                                            } else {
-                                              wifeSyndicateCost = 140;
-                                            }
-                                          },
-                                          value: wifeBool,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                ////////
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                        child: Text(
-                                      140.toString(),
-                                      style: kTextStyle,
-                                    )),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "اشتراك الأبناء",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        Checkbox(
-                                          activeColor: Colors.red[800],
-                                          onChanged: (value) {
-                                            setState(() {
-                                              sonsBool = value;
-                                            });
-                                            if (value == false) {
-                                              sonsSyndticateCost = 0;
-                                            } else {
-                                              sonsSyndticateCost = 140;
-                                            }
-                                          },
-                                          value: sonsBool,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                FaIcon(
+                                  FontAwesomeIcons.moneyBill,
+                                  color: Colors.red[800],
+                                  size: 18,
                                 ),
                               ],
                             ),
-                          ),
-                  ]),
-            ),
-            BnodRowWidget(
-                itemPrice: (syndicateInternalCost +
-                        syndicateRegesteriationCost +
-                        healthcareRegisterCost +
-                        sonsSyndticateCost +
-                        wifeSyndicateCost)
-                    .toString()),
+                            Row(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    "تجديد الأشتراك ",
+                                    textAlign: TextAlign.right,
+                                    style: kSubHeadersTextStyle,
+                                  ),
+                                ),
+                                Theme(
+                                  data: ThemeData(
+                                      unselectedWidgetColor: Colors.black),
+                                  child: Checkbox(
+                                    activeColor: Colors.red[800],
+                                    onChanged: (value) {
+                                      setState(() {
+                                        healthcareRegisterBool = value;
+                                        if (value == false) {
+                                          healthcareRegisterCost = 0;
+                                        } else {
+                                          healthcareRegisterCost = 60;
+                                        }
+                                      });
+                                    },
+                                    value: healthcareRegisterBool,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      !healthcareRegisterBool
+                          ? Divider(
+                              thickness: 1,
+                              color: Theme.of(context).hintColor,
+                            )
+                          : Padding(
+                              padding: EdgeInsets.only(
+                                left: 15.w,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                          child: Text(
+                                        mainSyndicateCost.toString(),
+                                        style: kTextStyle,
+                                      )),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "اشتراك العضو الرئيسي",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black),
+                                          ),
+                                          Checkbox(
+                                            activeColor: Colors.red[800],
+                                            onChanged: (value) {},
+                                            value: healthcareRegisterBool,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  //////////
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                          child: Text(
+                                        140.toString(),
+                                        style: kTextStyle,
+                                      )),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "اشتراك الزوجة",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black),
+                                          ),
+                                          Theme(
+                                            data: ThemeData(
+                                                unselectedWidgetColor:
+                                                    Colors.black),
+                                            child: Checkbox(
+                                              activeColor: Colors.red[800],
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  wifeBool = value;
+                                                });
+                                                if (value == false) {
+                                                  wifeSyndicateCost = 0;
+                                                } else {
+                                                  wifeSyndicateCost = 140;
+                                                }
+                                              },
+                                              value: wifeBool,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  ////////
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                          child: Text(
+                                        140.toString(),
+                                        style: kTextStyle,
+                                      )),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "اشتراك الأبناء",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black),
+                                          ),
+                                          Theme(
+                                            data: ThemeData(
+                                                unselectedWidgetColor:
+                                                    Colors.black),
+                                            child: Checkbox(
+                                              activeColor: Colors.red[800],
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  sonsBool = value;
+                                                });
+                                                if (value == false) {
+                                                  sonsSyndticateCost = 0;
+                                                } else {
+                                                  sonsSyndticateCost = 140;
+                                                }
+                                              },
+                                              value: sonsBool,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                    ]),
+              ),
+              BnodRowWidget(
+                  itemPrice: (syndicateInternalCost +
+                          syndicateRegesteriationCost +
+                          healthcareRegisterCost +
+                          sonsSyndticateCost +
+                          wifeSyndicateCost)
+                      .toString()),
 
-            // SubmitButton(
-            //   animationValue: 1.0,
-            //   title: "متابعة",
-            //   function: () {
-            //     Navigator.of(context).push(
-            //       new MaterialPageRoute(
-            //         builder: (context) => PaymentScreen(),
-            //       ),
-            //     );
-            //   },
-            // ),
-          ],
+              // SubmitButton(
+              //   animationValue: 1.0,
+              //   title: "متابعة",
+              //   function: () {
+              //     Navigator.of(context).push(
+              //       new MaterialPageRoute(
+              //         builder: (context) => PaymentScreen(),
+              //       ),
+              //     );
+              //   },
+              // ),
+            ],
+          ),
         ),
       ),
     );
