@@ -15,7 +15,7 @@ class RenewalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -29,7 +29,7 @@ class RenewalScreen extends StatelessWidget {
                   Container(
                     child: FaIcon(
                       FontAwesomeIcons.moneyCheck,
-                      color: Colors.white,
+                      color: Theme.of(context).highlightColor,
                       size: 70,
                     ),
                   ),

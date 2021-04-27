@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/components/animation/gf_animation.dart';
 import 'package:getwidget/types/gf_animation_type.dart';
-
+import '../Widgets/globalFile.dart';
 import 'TripDetails.dart';
 
 class ClubTrips extends StatefulWidget {
@@ -32,7 +32,7 @@ class _ClubTripsState extends State<ClubTrips>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           Container(
@@ -126,7 +126,7 @@ class TripsCard extends StatelessWidget {
         Positioned(
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.white60,
+                color: currentTheme.isDark ? Colors.white : Colors.red[800],
                 borderRadius:
                     BorderRadius.only(bottomLeft: Radius.circular(15))),
             padding: EdgeInsets.all(5),

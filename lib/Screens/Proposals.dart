@@ -13,7 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/shape/gf_button_shape.dart';
 import 'package:getwidget/size/gf_size.dart';
-
+import '../Widgets/globalFile.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:image_pickers/image_pickers.dart';
@@ -92,7 +92,7 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
                             child: Text("تقديم الشكاوى و المقترحات",
                                 style: TextStyle(
                                   fontSize: 19,
-                                  color: Colors.white,
+                                  color: highlightColor(context),
                                 )),
                           ),
                         ),
@@ -113,7 +113,8 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                        color: Colors.white, width: 1)),
+                                        color: highlightColor(context),
+                                        width: 1)),
                                 width: 100.w,
                                 height: 40,
                                 child: DropdownButtonHideUnderline(
@@ -144,7 +145,8 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
                               Text(
                                 "نوع الطلب",
                                 style: TextStyle(
-                                    fontSize: 17, color: Colors.white),
+                                    fontSize: 17,
+                                    color: highlightColor(context)),
                                 textAlign: TextAlign.right,
                               ),
                             ],
@@ -158,7 +160,7 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
                               ? "قم بأدخال شكواك"
                               : "قم بأدخال اقتراحك",
                           style: TextStyle(
-                              color: Colors.white,
+                              color: highlightColor(context),
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                         ),
@@ -173,7 +175,7 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
                           child: Directionality(
                             textDirection: ui.TextDirection.rtl,
                             child: TextFormField(
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: highlightColor(context)),
                               validator: (value) {
                                 if (value.isEmpty) {
                                   return " برجاء ادخال عنوان لل${widget.selectedAction}";
@@ -224,7 +226,7 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
                           child: Directionality(
                             textDirection: ui.TextDirection.rtl,
                             child: TextFormField(
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: highlightColor(context)),
                               validator: (value) {
                                 if (value.isEmpty) {
                                   return " برجاء ادخال موضوع ال${widget.selectedAction}";
@@ -313,7 +315,8 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: Colors.white)),
+                            border: Border.all(
+                                width: 1, color: highlightColor(context))),
                         height: 55.h,
                         child: GFButton(
                           onPressed: () {
@@ -325,7 +328,7 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
                                   msg: "تم الأرسال بنجاح",
                                   gravity: ToastGravity.CENTER,
                                   backgroundColor: Colors.white,
-                                  textColor: Colors.red[900]);
+                                  textColor: Colors.black);
                             }
                           },
                           text: "ارسال",

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Screens/Home.dart';
+import '../Widgets/globalFile.dart';
 
 class SportsScreen extends StatefulWidget {
   @override
@@ -16,11 +17,11 @@ class _SportsScreenState extends State<SportsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           Container(
-            color: Colors.black,
+            color: Theme.of(context).backgroundColor,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -108,7 +109,11 @@ class SportsActivitiesCard extends StatelessWidget {
                   borderRadius:
                       BorderRadius.only(bottomLeft: Radius.circular(15)),
                   color: Colors.white,
-                  border: Border.all(width: 1, color: Colors.red[700])),
+                  border: Border.all(
+                      width: 1,
+                      color: currentTheme.isDark
+                          ? Colors.red[700]
+                          : Colors.black)),
               padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
               width: double.infinity,
               child: Row(
@@ -125,13 +130,12 @@ class SportsActivitiesCard extends StatelessWidget {
                       children: [
                         FaIcon(
                           FontAwesomeIcons.calendarAlt,
-                          color: Theme.of(context).backgroundColor,
+                          color: Colors.black,
                         ),
                         Text(
                           "الحجز",
                           style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              color: Theme.of(context).backgroundColor),
+                              fontWeight: FontWeight.w800, color: Colors.black),
                         )
                       ],
                     ),
@@ -152,13 +156,12 @@ class SportsActivitiesCard extends StatelessWidget {
                       children: [
                         FaIcon(
                           FontAwesomeIcons.info,
-                          color: Theme.of(context).backgroundColor,
+                          color: Colors.black,
                         ),
                         Text(
                           "الأكاديمية",
                           style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              color: Theme.of(context).backgroundColor),
+                              fontWeight: FontWeight.w800, color: Colors.black),
                         )
                       ],
                     ),

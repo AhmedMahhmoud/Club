@@ -7,6 +7,7 @@ import 'package:getwidget/components/animation/gf_animation.dart';
 import 'package:getwidget/types/gf_animation_type.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../Widgets/globalFile.dart';
 
 class PageIntro extends StatefulWidget {
   PageIntro();
@@ -75,7 +76,7 @@ class _PageIntroState extends State<PageIntro> with TickerProviderStateMixin {
       ),
     ];
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -106,7 +107,9 @@ class _PageIntroState extends State<PageIntro> with TickerProviderStateMixin {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: index == _currentIndex
-                                  ? Colors.white
+                                  ? currentTheme.isDark
+                                      ? Colors.white
+                                      : Colors.black
                                   : Theme.of(context).primaryColor,
                             ),
                           );
@@ -158,7 +161,7 @@ class _PageIntroState extends State<PageIntro> with TickerProviderStateMixin {
                         child: Text(
                           "تخطى",
                           style: TextStyle(
-                              color: Colors.white,
+                              color: highlightColor(context),
                               fontSize: ScreenUtil()
                                   .setSp(18, allowFontScalingSelf: true),
                               fontWeight: FontWeight.w800),
@@ -184,7 +187,7 @@ class SliderPage extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.only(bottom: 50.w),
-      color: Colors.black,
+      color: Theme.of(context).backgroundColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -228,8 +231,8 @@ class SliderPage extends StatelessWidget {
             child: Container(
               height: 220.h,
               child: Card(
-                color: Theme.of(context).highlightColor,
-                elevation: 6,
+                color: highlightColor(context),
+                elevation: 2,
                 shadowColor: Theme.of(context).primaryColor,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 80.h, vertical: 40),
@@ -244,7 +247,9 @@ class SliderPage extends StatelessWidget {
                                   fontSize: ScreenUtil()
                                       .setSp(17, allowFontScalingSelf: true),
                                   letterSpacing: 0.4,
-                                  color: Theme.of(context).primaryColor),
+                                  color: currentTheme.isDark
+                                      ? Colors.red[800]
+                                      : Colors.white),
                               textAlign: TextAlign.center,
                             ),
                             SizedBox(
@@ -277,7 +282,9 @@ class SliderPage extends StatelessWidget {
                               fontWeight: FontWeight.w800,
                               fontSize: ScreenUtil()
                                   .setSp(17, allowFontScalingSelf: true),
-                              color: Theme.of(context).primaryColor),
+                              color: currentTheme.isDark
+                                  ? Theme.of(context).primaryColor
+                                  : Colors.white),
                           textAlign: TextAlign.center,
                         ),
                 ),

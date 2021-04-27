@@ -63,7 +63,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     child: GFButton(
                       onPressed: () {
                         Dialog errorDialog = Dialog(
-                          backgroundColor: Theme.of(context).highlightColor,
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   12.0)), //this right here

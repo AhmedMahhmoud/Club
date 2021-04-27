@@ -14,7 +14,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           Consumer<RestaurantCart>(
@@ -38,7 +38,9 @@ class CartScreen extends StatelessWidget {
                                 Text(
                                   "الطلب",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
+                                      color: Theme.of(context).highlightColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16),
                                 ),
                               ],
                             ),
@@ -122,11 +124,15 @@ class CartScreen extends StatelessWidget {
                                   children: [
                                     Text("EGP ${value.totalPrice + 4.99}",
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 14)),
+                                            color: Theme.of(context)
+                                                .highlightColor,
+                                            fontSize: 14)),
                                     Text(
                                       "المبلغ الكلى",
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 14),
+                                          color:
+                                              Theme.of(context).highlightColor,
+                                          fontSize: 14),
                                       textAlign: TextAlign.right,
                                     ),
                                   ],
@@ -147,8 +153,10 @@ class CartScreen extends StatelessWidget {
                                     padding: EdgeInsets.all(10),
                                     child: Center(
                                       child: Text(
-                                        "اضافة منتجات",
-                                        style: TextStyle(color: Colors.white),
+                                        "اضافة منتج",
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .highlightColor),
                                       ),
                                     ),
                                     decoration: BoxDecoration(

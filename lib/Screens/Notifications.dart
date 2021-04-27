@@ -48,7 +48,7 @@ class NotificationsScreen extends StatelessWidget {
                       reverse: true,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return AnimatedPage(
+                        return AnimatedNotifications(
                           card: Container(
                             margin: EdgeInsets.symmetric(vertical: 3),
                             child: NotificationsData(

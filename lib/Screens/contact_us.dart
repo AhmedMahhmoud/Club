@@ -200,8 +200,8 @@ class MyListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
-      shadowColor: Colors.red[700],
+      elevation: 1,
+      shadowColor: Colors.red[800],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50.0),
       ),
@@ -284,7 +284,7 @@ class DetailsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         launch(url);
       },
@@ -332,6 +332,7 @@ class CircletTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Card(
+        elevation: 2,
         color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0),
@@ -343,7 +344,7 @@ class CircletTile extends StatelessWidget {
             },
             icon: Icon(
               icon,
-              color: Color(0xFF3b3c40),
+              color: Colors.red[700],
             ),
           ),
         ),

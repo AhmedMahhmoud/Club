@@ -12,11 +12,8 @@ class ThemeAlert extends StatefulWidget {
 }
 
 class _ThemeAlertState extends State<ThemeAlert> {
-  bool toggleVal = false;
-
   toggleButton() {
     setState(() {
-      toggleVal = !toggleVal;
       currentTheme.switchTheme();
     });
   }
@@ -41,22 +38,23 @@ class _ThemeAlertState extends State<ThemeAlert> {
                       children: [
                         AnimatedContainer(
                           duration: Duration(
-                            milliseconds: 1000,
+                            milliseconds: 800,
                           ),
                           height: 40.0.h,
                           width: 100.0.w,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white, width: 1),
                               borderRadius: BorderRadius.circular(20.0),
-                              color:
-                                  toggleVal ? Colors.black : Color(0xff000D2A)),
+                              color: currentTheme.isDark
+                                  ? Colors.black
+                                  : Color(0xff000D2A)),
                           child: Stack(
                             children: [
                               AnimatedPositioned(
                                 child: GestureDetector(
                                   onTap: toggleButton,
                                   child: AnimatedSwitcher(
-                                    duration: Duration(milliseconds: 1000),
+                                    duration: Duration(milliseconds: 800),
                                     transitionBuilder: (Widget child,
                                         Animation<double> animation) {
                                       return ScaleTransition(
@@ -64,9 +62,9 @@ class _ThemeAlertState extends State<ThemeAlert> {
                                         child: child,
                                       );
                                     },
-                                    child: toggleVal
+                                    child: currentTheme.isDark
                                         ? FaIcon(
-                                            FontAwesomeIcons.sun,
+                                            FontAwesomeIcons.solidSun,
                                             color: Colors.orange[600],
                                             size: 30.w,
                                           )
@@ -77,11 +75,11 @@ class _ThemeAlertState extends State<ThemeAlert> {
                                           ),
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 1000),
+                                duration: Duration(milliseconds: 800),
                                 curve: Curves.easeIn,
                                 top: 3.0,
-                                left: toggleVal ? 60.0.w : 0.0,
-                                right: toggleVal ? 0.0 : 60.0.w,
+                                left: currentTheme.isDark ? 60.0.w : 0.0,
+                                right: currentTheme.isDark ? 0.0 : 60.0.w,
                               ),
                             ],
                           ),

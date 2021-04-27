@@ -32,43 +32,40 @@ class _ServicesScreenState extends State<ServicesScreen>
     return Stack(
       children: [
         Container(
+          color: Theme.of(context).backgroundColor,
           child: Column(
             children: [
               UserHeader2(),
               SizedBox(height: 10.h),
               Expanded(
-                  child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: GFAnimation(
-                  scaleAnimation: animation,
-                  controller: controller,
-                  type: GFAnimationType.scaleTransition,
                   child: Container(
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 0.95,
-                            crossAxisSpacing: 15.w,
-                            mainAxisSpacing: 10.w,
-                            crossAxisCount: 2),
-                        itemBuilder: (context, index) {
-                          return AnimatedPage(
-                            card: Card(
-                                color: Theme.of(context).highlightColor,
-                                shadowColor: Colors.orange,
-                                elevation: 3,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: GridViewItemsWidg(
-                                  title: gridList[index].title,
-                                  iconData: gridList[index].iconData,
-                                )),
-                            secondScreen: gridList[index].function,
-                          );
-                        },
-                        itemCount: gridList.length,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: GFAnimation(
+                    scaleAnimation: animation,
+                    controller: controller,
+                    type: GFAnimationType.scaleTransition,
+                    child: Container(
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 0.95,
+                                  crossAxisSpacing: 15.w,
+                                  mainAxisSpacing: 10.w,
+                                  crossAxisCount: 2),
+                          itemBuilder: (context, index) {
+                            return AnimatedPage(
+                              card: GridViewItemsWidg(
+                                title: gridList[index].title,
+                                iconData: gridList[index].iconData,
+                              ),
+                              secondScreen: gridList[index].function,
+                            );
+                          },
+                          itemCount: gridList.length,
+                        ),
                       ),
                     ),
                   ),

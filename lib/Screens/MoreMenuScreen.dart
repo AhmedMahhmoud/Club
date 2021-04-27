@@ -16,6 +16,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'AboutApp.dart';
 import 'Home.dart';
+import '../Widgets/globalFile.dart';
 
 class MoreMenuScreen extends StatelessWidget {
   @override
@@ -34,7 +35,7 @@ class MoreMenuScreen extends StatelessWidget {
                 children: [
                   loggedUser ? UserHeader2() : Container(),
                   Divider(
-                    color: Colors.white,
+                    color: Theme.of(context).highlightColor,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -50,12 +51,12 @@ class MoreMenuScreen extends StatelessWidget {
                             );
                     },
                     child: MoreRowItem(
-                      title: "الحساب الشخصي",
+                      title: "الحساب الشخصى",
                       iconData: FontAwesomeIcons.user,
                     ),
                   ),
                   Divider(
-                    color: Colors.white,
+                    color: highlightColor(context),
                   ),
                   InkWell(
                     onTap: () => Navigator.push(
@@ -64,12 +65,11 @@ class MoreMenuScreen extends StatelessWidget {
                           builder: (context) => ContactUsSc(),
                         )),
                     child: MoreRowItem(
-                      title: "اتصل بنا",
-                      iconData: FontAwesomeIcons.phone,
-                    ),
+                        title: "اتصل بنا",
+                        iconData: Icons.phone_android_outlined),
                   ),
                   Divider(
-                    color: Colors.white,
+                    color: highlightColor(context),
                   ),
                   InkWell(
                     onTap: () => Navigator.push(
@@ -79,11 +79,11 @@ class MoreMenuScreen extends StatelessWidget {
                         )),
                     child: MoreRowItem(
                       title: "عن التطبيق",
-                      iconData: FontAwesomeIcons.info,
+                      iconData: Icons.info_outline,
                     ),
                   ),
                   Divider(
-                    color: Colors.white,
+                    color: highlightColor(context),
                   ),
                   InkWell(
                     onTap: () => Navigator.push(
@@ -93,11 +93,11 @@ class MoreMenuScreen extends StatelessWidget {
                         )),
                     child: MoreRowItem(
                       title: "عن النادى",
-                      iconData: FontAwesomeIcons.peopleArrows,
+                      iconData: Icons.people_outline_outlined,
                     ),
                   ),
                   Divider(
-                    color: Colors.white,
+                    color: highlightColor(context),
                   ),
                   InkWell(
                     onTap: () => loggedUser
@@ -118,7 +118,7 @@ class MoreMenuScreen extends StatelessWidget {
                     ),
                   ),
                   Divider(
-                    color: Colors.white,
+                    color: highlightColor(context),
                   ),
                   InkWell(
                     onTap: () => showDialog(
@@ -129,11 +129,13 @@ class MoreMenuScreen extends StatelessWidget {
                     ),
                     child: MoreRowItem(
                       title: "تغير الخلفية",
-                      iconData: FontAwesomeIcons.moon,
+                      iconData: currentTheme.isDark
+                          ? FontAwesomeIcons.moon
+                          : FontAwesomeIcons.solidSun,
                     ),
                   ),
                   Divider(
-                    color: Colors.white,
+                    color: highlightColor(context),
                   ),
                   MoreRowItem(
                     function: () {
@@ -151,7 +153,7 @@ class MoreMenuScreen extends StatelessWidget {
                         : FontAwesomeIcons.doorClosed,
                   ),
                   Divider(
-                    color: Colors.white,
+                    color: highlightColor(context),
                   ),
                   SizedBox(
                     height: 10,
@@ -175,14 +177,18 @@ class MoreMenuScreen extends StatelessWidget {
                             children: [
                               Text(
                                 "Powered By",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                  color: highlightColor(context),
+                                ),
                               ),
                               GestureDetector(
                                 onTap: () => launch("http://amh-egypt.com/"),
                                 child: Container(
                                     height: 60.h,
                                     child: Image.asset(
-                                      'android/app/resources/tec-white.png',
+                                      currentTheme.isDark
+                                          ? 'android/app/resources/tec-white.png'
+                                          : 'android/app/resources/amhTrans.png',
                                       fit: BoxFit.fitHeight,
                                     )),
                               ),
@@ -288,13 +294,13 @@ class MoreRowItem extends StatelessWidget {
           children: [
             FaIcon(
               iconData,
-              color: Colors.white,
+              color: highlightColor(context),
               size: 20,
             ),
             Text(
               title,
               style: TextStyle(
-                color: Colors.white,
+                color: highlightColor(context),
                 fontSize: ScreenUtil().setSp(17, allowFontScalingSelf: true),
               ),
               textAlign: TextAlign.end,

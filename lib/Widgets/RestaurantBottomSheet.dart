@@ -149,7 +149,7 @@ Future restaurantBottomSheet(
                       Provider.of<RestaurantCart>(context, listen: false)
                           .calculateTotalPrice(value.total);
                       Fluttertoast.showToast(
-                          msg: "Item placed successfully to your basket",
+                          msg: "تم وضع المنتج فى السلة بنجاح",
                           backgroundColor: Colors.red[700],
                           textColor: Colors.white);
                       Navigator.pop(context);
@@ -170,7 +170,7 @@ Future restaurantBottomSheet(
                                 fontSize: 16),
                           ),
                           Text(
-                            "Add to basket",
+                            "اضافة الى السلة",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -216,7 +216,7 @@ class FoodItemMenuWidg extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).highlightColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w500),
               ),
@@ -232,7 +232,7 @@ class FoodItemMenuWidg extends StatelessWidget {
               Text(
                 "EGP $price",
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).highlightColor,
                     fontSize: 13,
                     fontWeight: FontWeight.w500),
               )

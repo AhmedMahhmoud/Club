@@ -267,9 +267,9 @@ class _AnimatedDropDownState extends State<AnimatedDropDown>
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
-                                  color: Colors.orange,
-                                  blurRadius: 4,
-                                  offset: Offset(0, -1))
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  offset: Offset(0, 0))
                             ],
                             borderRadius: BorderRadius.circular(12),
                           ),

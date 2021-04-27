@@ -1,5 +1,6 @@
 import 'package:demo_club/Models/FoodCategory.dart';
 import 'package:demo_club/Models/UserModel.dart';
+import 'package:demo_club/Screens/testing.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,8 +56,8 @@ class _MyAppState extends State<MyApp> {
                 debugShowCheckedModeBanner: false,
                 theme: ThemeData.light().copyWith(
                     primaryColor: Colors.red[900],
-                    backgroundColor: Colors.black,
-                    highlightColor: Colors.white,
+                    backgroundColor: Colors.white,
+                    highlightColor: Colors.black,
                     primaryColorDark: Colors.white,
                     accentColor: Colors.orange[700],
                     hintColor: Colors.grey,

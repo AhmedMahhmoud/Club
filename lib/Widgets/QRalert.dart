@@ -14,7 +14,7 @@ class QrAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        backgroundColor: Theme.of(context).highlightColor,
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0)), //this right here
         child: Stack(

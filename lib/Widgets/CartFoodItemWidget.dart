@@ -23,6 +23,7 @@ class FoodCartMenu extends StatelessWidget {
     return Stack(
       children: [
         Card(
+          elevation: 2,
           child: Container(
             padding: EdgeInsets.only(left: 10),
             width: double.infinity,
@@ -37,14 +38,14 @@ class FoodCartMenu extends StatelessWidget {
                     Text(
                       title,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).highlightColor,
                           fontSize: 14,
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
                       "EGP $price",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).highlightColor,
                           fontSize: 13,
                           fontWeight: FontWeight.w500),
                     ),
@@ -53,7 +54,9 @@ class FoodCartMenu extends StatelessWidget {
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.black, width: 1)),
+                          border: Border.all(
+                              color: Theme.of(context).highlightColor,
+                              width: 1)),
                     )
                   ],
                 ),

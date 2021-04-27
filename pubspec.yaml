@@ -50,6 +50,7 @@ dependencies:
   share: ^0.6.5+4
   image_pickers: ^1.0.8+7
   animated_icon_button: ^0.3.0
+  intl_phone_number_input: ^0.6.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

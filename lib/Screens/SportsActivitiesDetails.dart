@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'MyHomePage.dart';
+import '../Widgets/globalFile.dart';
 
 class ActivitiesDetails extends StatefulWidget {
   final String image;
@@ -66,7 +67,7 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
         child: Text(
           "  أكاديمية النادى الأهلى لكرة القدم هى مدرسة لتعليم اسس كرة القدم وفق الانظمة الحديثة المتبعة فى العالم فى كرة القدم",
           textAlign: TextAlign.right,
-          style: TextStyle(color: Colors.white, fontSize: 14),
+          style: TextStyle(color: highlightColor(context), fontSize: 14),
         ),
       ),
       ListView(
@@ -86,9 +87,11 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                     Directionality(
                       textDirection: TextDirection.rtl,
                       child: DropdownButton(
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: highlightColor(context)),
                         value: selectedDrop,
-                        dropdownColor: Colors.grey[900],
+                        dropdownColor: currentTheme.isDark
+                            ? Colors.grey[800]
+                            : Colors.white,
                         isExpanded: true,
                         onChanged: (value) {
                           setState(() {
@@ -106,7 +109,7 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                                     x,
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: highlightColor(context),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -126,9 +129,11 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                     Directionality(
                       textDirection: TextDirection.rtl,
                       child: DropdownButton(
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: highlightColor(context)),
                         value: selectedMonth,
-                        dropdownColor: Colors.grey[900],
+                        dropdownColor: currentTheme.isDark
+                            ? Colors.grey[800]
+                            : Colors.white,
                         isExpanded: true,
                         onChanged: (value) {
                           setState(() {
@@ -146,7 +151,7 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                                     x,
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: highlightColor(context),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -166,9 +171,11 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                     Directionality(
                       textDirection: TextDirection.rtl,
                       child: DropdownButton(
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: highlightColor(context)),
                         value: selectedAge,
-                        dropdownColor: Colors.grey[900],
+                        dropdownColor: currentTheme.isDark
+                            ? Colors.grey[800]
+                            : Colors.white,
                         isExpanded: true,
                         onChanged: (value) {
                           setState(() {
@@ -186,7 +193,7 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                                     x,
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: highlightColor(context),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -226,7 +233,7 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
       )),
     ];
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           Container(
@@ -238,7 +245,7 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                   decoration: BoxDecoration(
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: Colors.white,
+                          color: highlightColor(context),
                           blurRadius: 8.0,
                           offset: Offset(0.0, 0.15))
                     ],
@@ -274,7 +281,8 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                                   child: Text(
                                     catsList[index],
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
+                                        color: highlightColor(context),
+                                        fontSize: 18),
                                     textAlign: TextAlign.end,
                                   ),
                                 ),
@@ -283,7 +291,7 @@ class _ActivitiesDetailsState extends State<ActivitiesDetails> {
                                   width: 100.w,
                                   color: selectedCat == index
                                       ? Colors.red[700]
-                                      : Colors.black,
+                                      : Theme.of(context).backgroundColor,
                                 )
                               ],
                             ),
@@ -349,7 +357,7 @@ class PaymentButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.red,
-      height: 45.h, 
+      height: 45.h,
       child: GFButton(
         onPressed: () {
           Navigator.push(
@@ -408,7 +416,7 @@ class PlaceLocation extends StatelessWidget {
               ),
               Text(title,
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Theme.of(context).backgroundColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16)),
             ],

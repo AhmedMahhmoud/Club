@@ -5,6 +5,7 @@ import 'package:demo_club/Widgets/NewsTilesList.dart';
 import 'package:demo_club/Widgets/backButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../Widgets/globalFile.dart';
 
 class Trips extends StatelessWidget {
   @override
@@ -54,7 +55,8 @@ class MyHegCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
       child: Card(
-        color: Theme.of(context).highlightColor,
+        color:
+            currentTheme.isDark ? Colors.black : Theme.of(context).primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -69,7 +71,9 @@ class MyHegCard extends StatelessWidget {
                 child: Text(
                   tripName,
                   style: TextStyle(
-                      color: Colors.orange[700],
+                      color: currentTheme.isDark
+                          ? Colors.orange[700]
+                          : Colors.white,
                       fontSize: 19,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1),
@@ -116,7 +120,8 @@ class HegScreenCards extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Card(
-        color: Theme.of(context).highlightColor,
+        color:
+            currentTheme.isDark ? Colors.black : Theme.of(context).primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -130,7 +135,9 @@ class HegScreenCards extends StatelessWidget {
                 child: Text(
                   "رحلة $tripName",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: currentTheme.isDark
+                          ? Colors.orange[700]
+                          : Colors.white,
                       fontSize: 19,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1),

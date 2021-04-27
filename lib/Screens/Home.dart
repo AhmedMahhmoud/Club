@@ -8,7 +8,7 @@ import 'package:demo_club/Widgets/HomeAfterLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-
+import "../Widgets/globalFile.dart";
 import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:getwidget/components/badge/gf_badge.dart';
 
@@ -63,7 +63,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return selectedIndex == 1
         ? Scaffold(
             bottomNavigationBar: BottomAppBar(
-              color: Theme.of(context).highlightColor,
+              color: Colors.white,
               shape: const CustomNotchedRectangle(),
               child: Container(
                   padding: EdgeInsets.only(top: 10.h, left: 10.w),
@@ -77,7 +77,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Container(
-                            child: InkWell(
+                            child: GestureDetector(
                                 onTap: () {
                                   toggleSelectedIndex(index);
                                 },
@@ -115,10 +115,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               tooltip: 'Home',
               child: Icon(
                 Icons.home,
-                color: Theme.of(context).highlightColor,
+                color: Colors.white,
               ),
             ),
-            backgroundColor: Colors.black,
+            backgroundColor: Theme.of(context).backgroundColor,
             body: Stack(
               children: [
                 Container(
@@ -173,37 +173,34 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         height: 10.h,
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            child: ListView.builder(
-                              itemBuilder: (context, index) {
-                                return categoryIndex == 0
-                                    ? AnimatedPage(
-                                        card: newslist[index],
-                                        secondScreen: NewsScreen(
-                                          index: index,
-                                          description:
-                                              newslist[index].description,
-                                          image: newslist[index].image,
-                                          title: newslist[index].newsTitle,
-                                        ),
-                                      )
-                                    : AnimatedPage(
-                                        card: sportsNews[index],
-                                        secondScreen: NewsScreen(
-                                          index: index,
-                                          description:
-                                              sportsNews[index].description,
-                                          image: sportsNews[index].image,
-                                          title: sportsNews[index].newsTitle,
-                                        ),
-                                      );
-                              },
-                              itemCount: categoryIndex == 0
-                                  ? newslist.length
-                                  : sportsNews.length,
-                            ),
+                        child: Container(
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              return categoryIndex == 0
+                                  ? AnimatedPage(
+                                      card: newslist[index],
+                                      secondScreen: NewsScreen(
+                                        index: index,
+                                        description:
+                                            newslist[index].description,
+                                        image: newslist[index].image,
+                                        title: newslist[index].newsTitle,
+                                      ),
+                                    )
+                                  : AnimatedPage(
+                                      card: sportsNews[index],
+                                      secondScreen: NewsScreen(
+                                        index: index,
+                                        description:
+                                            sportsNews[index].description,
+                                        image: sportsNews[index].image,
+                                        title: sportsNews[index].newsTitle,
+                                      ),
+                                    );
+                            },
+                            itemCount: categoryIndex == 0
+                                ? newslist.length
+                                : sportsNews.length,
                           ),
                         ),
                       )
@@ -223,7 +220,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         : selectedIndex == 2
             ? Scaffold(
                 bottomNavigationBar: BottomAppBar(
-                  color: Theme.of(context).highlightColor,
+                  color: Colors.white,
                   shape: const CustomNotchedRectangle(),
                   child: Container(
                       padding: EdgeInsets.only(top: 10.h, left: 10.w),
@@ -237,7 +234,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return Container(
-                                child: InkWell(
+                                child: GestureDetector(
                                     onTap: () {
                                       toggleSelectedIndex(index);
                                     },
@@ -275,7 +272,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   tooltip: 'Home',
                   child: Icon(Icons.home, color: Colors.white),
                 ),
-                backgroundColor: Colors.black,
+                backgroundColor: Theme.of(context).backgroundColor,
                 body: loggedUser
                     ? ServicesScreen()
                     : RoundedAlert(
@@ -294,7 +291,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               )
             : Scaffold(
                 bottomNavigationBar: BottomAppBar(
-                  color: Theme.of(context).highlightColor,
+                  color: Colors.white,
                   shape: const CustomNotchedRectangle(),
                   child: Container(
                       padding: EdgeInsets.only(top: 10.h, left: 10.w),
@@ -308,7 +305,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return Container(
-                                child: InkWell(
+                                child: GestureDetector(
                                     onTap: () {
                                       toggleSelectedIndex(index);
                                     },
@@ -346,7 +343,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   tooltip: 'Home',
                   child: Icon(Icons.home, color: Colors.white),
                 ),
-                backgroundColor: Colors.black,
+                backgroundColor: Theme.of(context).backgroundColor,
                 body: MoreMenuScreen());
   }
 }
@@ -387,70 +384,32 @@ class GridViewItemsWidg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  child: Center(
-                      child: Lottie.asset(
-                    iconData,
-                    repeat: true,
-                  )),
-                  height: 120.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15)),
-                  ),
-                ),
-                Text(
-                  title,
-                  style: TextStyle(
-                      color: Theme.of(context).backgroundColor,
-                      fontWeight: FontWeight.w800,
-                      fontSize:
-                          ScreenUtil().setSp(17, allowFontScalingSelf: true)),
-                ),
-              ],
-            ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            child: Center(
+                child: Lottie.asset(
+              iconData,
+              repeat: true,
+            )),
+            height: 120.h,
           ),
-        ));
+          Text(
+            title,
+            style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w800,
+                fontSize: ScreenUtil().setSp(17, allowFontScalingSelf: true)),
+          ),
+        ],
+      ),
+    );
   }
 }
-
-// class OfflineHeader extends StatelessWidget {
-//   const OfflineHeader({
-//     Key key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ClipPath(
-//       clipper: WaveClipperOne(
-//         flip: true,
-//       ),
-//       child: Container(
-//         color: Colors.red[900],
-//         height: 110.h,
-//         width: double.infinity,
-//         child: Container(
-//           decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(color: Colors.w)),
-//           child: Image(
-//             width: 60.w,
-//             height: 60.h,
-//             image: NetworkImage(
-//                 "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png"),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class Notofications extends StatelessWidget {
   const Notofications({
@@ -507,7 +466,7 @@ class UserHeader extends StatelessWidget {
               )),
           child: Stack(
             children: [
-              InkWell(
+              GestureDetector(
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -523,7 +482,7 @@ class UserHeader extends StatelessWidget {
               Positioned(
                 right: 0,
                 top: 0,
-                child: InkWell(
+                child: GestureDetector(
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -681,7 +640,9 @@ class OffersCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
-          color: Theme.of(context).primaryColor,
+          color: currentTheme.isDark
+              ? Theme.of(context).primaryColor
+              : Colors.grey,
         ),
         borderRadius: BorderRadius.circular(9),
         color: Colors.white,
@@ -757,13 +718,11 @@ class NewsCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 5.h, top: 5.h, right: 5.w, left: 5.w),
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 2,
-          color: Theme.of(context).primaryColor,
-        ),
-        borderRadius: BorderRadius.circular(9),
-        color: Colors.white,
-      ),
+          borderRadius: BorderRadius.circular(9),
+          color: Colors.white,
+          border: Border.all(
+              width: 2,
+              color: currentTheme.isDark ? Colors.red[700] : Colors.grey)),
       height: 100.h,
       width: double.infinity,
       child: Row(
@@ -887,7 +846,57 @@ class AnimatedPage extends StatelessWidget {
       closedBuilder: (context, action) {
         return card;
       },
-      closedColor: Colors.transparent,
+      closedColor: Theme.of(context).backgroundColor,
+      openColor: Colors.transparent,
+      openBuilder: (context, action) {
+        return secondScreen;
+      },
+    );
+  }
+}
+
+class AnimatedPage2 extends StatelessWidget {
+  final Widget card;
+  final Widget secondScreen;
+  AnimatedPage2({
+    this.secondScreen,
+    this.card,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OpenContainer(
+      transitionDuration: Duration(milliseconds: 300),
+      closedBuilder: (context, action) {
+        return card;
+      },
+      closedColor: Theme.of(context).backgroundColor,
+      openColor: Colors.transparent,
+      openBuilder: (context, action) {
+        return secondScreen;
+      },
+    );
+  }
+}
+
+class AnimatedNotifications extends StatelessWidget {
+  final Widget card;
+  final Widget secondScreen;
+  AnimatedNotifications({
+    this.secondScreen,
+    this.card,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OpenContainer(
+      transitionDuration: Duration(milliseconds: 300),
+      closedBuilder: (context, action) {
+        return card;
+      },
+      closedColor: Colors.black,
       openColor: Colors.transparent,
       openBuilder: (context, action) {
         return secondScreen;

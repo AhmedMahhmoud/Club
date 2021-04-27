@@ -37,7 +37,7 @@ class _RestaurantQRState extends State<RestaurantQR> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(
           children: [
             Column(
@@ -71,7 +71,7 @@ class _RestaurantQRState extends State<RestaurantQR> {
                             Text(
                               "McDonald's",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Theme.of(context).highlightColor,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w800),
                               textAlign: TextAlign.start,
@@ -112,7 +112,8 @@ class _RestaurantQRState extends State<RestaurantQR> {
                                           child: Text(
                                             foodModel[index].catName,
                                             style: TextStyle(
-                                                color: Colors.white,
+                                                color: Theme.of(context)
+                                                    .highlightColor,
                                                 fontSize: 18),
                                             textAlign: TextAlign.end,
                                           ),
@@ -125,7 +126,8 @@ class _RestaurantQRState extends State<RestaurantQR> {
                                           width: 40.w,
                                           color: selectedFood == index
                                               ? Colors.red[700]
-                                              : Colors.black,
+                                              : Theme.of(context)
+                                                  .backgroundColor,
                                         )
                                       ],
                                     ),
@@ -235,7 +237,6 @@ class _RestaurantQRState extends State<RestaurantQR> {
                 Navigator.pop(context);
               },
             ),
-          
           ],
         ),
       ),

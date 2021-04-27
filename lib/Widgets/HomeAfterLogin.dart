@@ -16,8 +16,9 @@ class HomeAfterLogin extends StatelessWidget {
         Expanded(
           child: Container(
               padding: EdgeInsets.all(10),
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
               width: double.infinity,
               child: Swiper(
                 autoplay: true,
@@ -62,7 +63,7 @@ class HomeAfterLogin extends StatelessWidget {
                               horizontal: 15.w,
                             ),
                             width: double.infinity,
-                            color: Colors.white,
+                            color: Colors.grey[200],
                             child: Text(
                               newslist[index].newsTitle,
                               style: TextStyle(
@@ -74,13 +75,13 @@ class HomeAfterLogin extends StatelessWidget {
                               maxLines: 2,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   );
                 },
               )),
-        )
+        ),
       ],
     ));
   }

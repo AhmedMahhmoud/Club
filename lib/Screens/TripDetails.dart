@@ -29,9 +29,9 @@ class _HegAndOmraInformationScreenState
     extends State<HegAndOmraInformationScreen> {
   @override
   Widget build(BuildContext context) {
-    TextStyle textStyle = TextStyle(color: Theme.of(context).backgroundColor);
+    TextStyle textStyle = TextStyle(color: Theme.of(context).highlightColor);
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(children: [
           Column(
             children: [
@@ -63,8 +63,8 @@ class _HegAndOmraInformationScreenState
                         decoration: BoxDecoration(
                             color: Colors.red[800],
                             borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15),
-                                topLeft: Radius.circular(15))),
+                                bottomLeft: Radius.circular(20),
+                                topLeft: Radius.circular(20))),
                         padding: EdgeInsets.only(right: 8),
                         height: 50.h,
                         width: MediaQuery.of(context).size.width,
@@ -160,7 +160,7 @@ class HegOmraTripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Theme.of(context).highlightColor,
+      color: Colors.white,
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -192,8 +192,8 @@ class HegOmraTripCard extends StatelessWidget {
               ),
               Directionality(
                 textDirection: ui.TextDirection.rtl,
-                child: Text(displayWidget,
-                    style: TextStyle(color: Theme.of(context).backgroundColor)),
+                child:
+                    Text(displayWidget, style: TextStyle(color: Colors.black)),
               )
             ],
           ),

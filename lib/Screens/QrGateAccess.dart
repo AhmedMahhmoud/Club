@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../Widgets/globalFile.dart';
 
 class GateAccess extends StatefulWidget {
   @override
@@ -42,7 +43,7 @@ class _GateAccessState extends State<GateAccess> with TickerProviderStateMixin {
     return GestureDetector(
       onTap: () {},
       child: Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).backgroundColor,
           body: Stack(
             children: <Widget>[
               Column(
@@ -56,7 +57,7 @@ class _GateAccessState extends State<GateAccess> with TickerProviderStateMixin {
                           Text(
                             "الأعضاء فقط يمكنهم الدخول عبر مسح الكود على البوابة",
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).highlightColor,
                                 fontWeight: FontWeight.w700),
                           ),
                           Countdown(
@@ -108,7 +109,10 @@ class Countdown extends AnimatedWidget {
           height: 250.h,
           child: Container(
             decoration: BoxDecoration(
-                border: Border.all(width: 1, color: Colors.red[800])),
+                border: Border.all(
+                    width: 1,
+                    color:
+                        currentTheme.isDark ? Colors.red[800] : Colors.black)),
             child: QrImage(
               foregroundColor: Colors.black,
               backgroundColor: Colors.white,
@@ -120,15 +124,17 @@ class Countdown extends AnimatedWidget {
         animation.isCompleted
             ? Text(
                 "تم انتهاء صلاحية الكود",
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+                style: TextStyle(
+                    color: Theme.of(context).highlightColor,
+                    fontWeight: FontWeight.w700),
               )
             : Column(
                 children: [
                   Text(
                     ":سوف يتم انتهاء صلاحية الكود فى ",
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w700),
+                        color: Theme.of(context).highlightColor,
+                        fontWeight: FontWeight.w700),
                   ),
                   Text(
                     "$timerText",

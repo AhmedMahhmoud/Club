@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import "../Widgets/globalFile.dart";
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/shape/gf_button_shape.dart';
 import 'package:getwidget/size/gf_size.dart';
 import 'package:provider/provider.dart';
+import '../Widgets/globalFile.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -166,6 +167,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         right: 0,
                         child: Container(
                           decoration: BoxDecoration(
+                            border: Border.all(width: 1, color: Colors.grey),
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
@@ -207,7 +209,7 @@ class TextWidgetProfile extends StatelessWidget {
       child: Text(
         labelName,
         style: TextStyle(
-          color: Colors.white,
+          color: highlightColor(context),
           fontSize: 18,
         ),
         textAlign: TextAlign.right,
@@ -237,28 +239,26 @@ class TextFieldProfile extends StatelessWidget {
       enabled: isEditable,
       controller: controller,
       autofocus: isEditable,
-      style: TextStyle(
-        color: Colors.white,
-      ),
+      style: TextStyle(color: highlightColor(context)),
       decoration: new InputDecoration(
           focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey, width: 1),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 1),
+            borderSide: BorderSide(color: highlightColor(context), width: 1),
           ),
           disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey, width: 1),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 1),
+            borderSide: BorderSide(color: highlightColor(context), width: 1),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 1),
+            borderSide: BorderSide(color: highlightColor(context), width: 1),
           ),
           hintText: name,
           hintStyle: TextStyle(
-              color: isEditable ? Colors.white : Colors.grey,
+              color: isEditable ? highlightColor(context) : Colors.grey,
               fontSize: 14,
               letterSpacing: 1)),
     );
@@ -283,6 +283,7 @@ class YesNoAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0)), //this right here
         child: Container(

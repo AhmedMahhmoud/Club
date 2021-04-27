@@ -12,7 +12,7 @@ class OffersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Align(
         alignment: Alignment.topRight,
         child: Stack(
@@ -25,13 +25,14 @@ class OffersScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "العروض ",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(
+                        color: Theme.of(context).highlightColor, fontSize: 20),
                   ),
                 ),
                 Expanded(
                   child: ListView.builder(
                     itemBuilder: (context, index) {
-                      return AnimatedPage(
+                      return AnimatedPage2(
                         card: offersList[index],
                         secondScreen: OfferDetails(
                           index: index,

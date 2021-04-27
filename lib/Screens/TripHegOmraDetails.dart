@@ -78,14 +78,12 @@ class _HegInformationScreenState extends State<HegInformationScreen> {
                           width: MediaQuery.of(context).size.width,
                           child: Align(
                             alignment: Alignment.centerRight,
-                            child: Text(
-                              widget.title,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  color: Theme.of(context).highlightColor),
-                              textAlign: TextAlign.right,
-                            ),
+                            child: Text(widget.title,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: Colors.white),
+                                textAlign: TextAlign.right),
                           ),
                         ),
                         HegOmraTripCardDate(
